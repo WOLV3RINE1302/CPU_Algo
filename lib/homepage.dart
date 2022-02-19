@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
             stretchModes: <StretchMode>[StretchMode.zoomBackground],
             titlePadding: EdgeInsets.fromLTRB(forWidth(10), 0, 0, forHeight(6)),
             title: Text(
-              "CPU Scheluding Algorithms",
+              "CPU Scheduling Algorithms",
               style: TextStyle(color: Vx.black, fontSize: forHeight(16)),
             ),
           ),
