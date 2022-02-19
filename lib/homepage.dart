@@ -58,38 +58,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-/* 
-ListView(
-      children: [
-        Container(
-          height: forHeight(60),
-          width: width * 100,
-          color: Vx.white,
-          child: Text(
-            "CPU Scheluding Algorithms",
-            style: TextStyle(
-                color: Vx.black,
-                fontSize: forHeight(20),
-                fontWeight: FontWeight.w600),
-          ).objectCenterLeft().pOnly(left: forWidth(7)),
-        ),
-        sizedBoxForHeight(20),
-        GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
-          shrinkWrap: true,
-          itemCount: 6,
-          itemBuilder: (BuildContext context, int index) {
-            return Container(
-              height: forHeight(170),
-              width: forHeight(170),
-              decoration: BoxDecoration(
-                  color: ColorModel().blue,
-                  borderRadius: BorderRadius.circular(forHeight(10))),
-            );
-          },
-        ).pSymmetric(h: forWidth(10)),
-      ],
-    )
-    
-*/
