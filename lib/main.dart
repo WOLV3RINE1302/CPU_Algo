@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:os_project/color_model.dart';
 import 'package:os_project/homepage.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -22,6 +23,32 @@ class ChangeViewMutation extends VxMutation<MyStore> {
 MyStore store = VxState.store;
 double height = 0;
 double width = 0;
+List<Color> colors = [
+  ColorModel().red,
+  ColorModel().blue,
+  ColorModel().green,
+  ColorModel().yellow,
+  ColorModel().orange,
+  Vx.white,
+];
+
+/* 
+First Come First Serve(FCFS)
+Shortest Job First(SJF) 
+Round-Robin Scheduling (RRS)
+Shortest Remaining Time First(SRTF)
+Priority Based Scheduling(PBS)*/
+
+List<String> fullNames = [
+  "First Come First Serve",
+  "Shortest Job First",
+  "Round-Robin Scheduling",
+  "Shortest Remaining Time First",
+  "Priority Based Scheduling",
+  "About Project"
+];
+List<String> shortNames = ["FCFS", "SJF", "RRS", "SRTF", "PBS", "About"];
+List<String> iconNames = ["fcfs", "sjf", "rr", "srtf", "pbs", "about"];
 
 class MyApp extends StatelessWidget {
   @override

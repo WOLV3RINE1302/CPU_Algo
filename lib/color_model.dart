@@ -7,11 +7,4 @@ class ColorModel {
   Color blue = Vx.hexToColor("#6db1fa");
   Color green = Vx.hexToColor("#46df6f");
   Color orange = Vx.hexToColor("#ff8700");
-  // Map<String, dynamic> colors = {
-  //   "yellow": Vx.hexToColor("#edf000"),
-  //   "red": Vx.hexToColor("#fc4d4d"),
-  //   "blue": Vx.hexToColor("#6db1fa"),
-  //   "green": Vx.hexToColor("#46df6f"),
-  //   "orange": Vx.hexToColor("#ff8700")
-  // };
 }

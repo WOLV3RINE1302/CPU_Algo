@@ -40,14 +40,51 @@ class _HomePageState extends State<HomePage> {
           sliver: SliverGrid(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                mainAxisSpacing: forHeight(10),
-                crossAxisSpacing: forWidth(10)),
+                mainAxisSpacing: forHeight(11),
+                crossAxisSpacing: forWidth(11)),
             delegate: SliverChildBuilderDelegate(
               (_, int index) {
-                return Container(
-                  decoration: BoxDecoration(
-                      color: ColorModel().blue,
-                      borderRadius: BorderRadius.circular(forHeight(10))),
+                return GestureDetector(
+                  onLongPress: () =>
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    backgroundColor: colors[index],
+                    duration: Duration(milliseconds: 1600),
+                    content: Text(
+                      fullNames[index],
+                      style:
+                          TextStyle(color: Vx.black, fontSize: forHeight(18)),
+                    ),
+                  )),
+                  child: Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Image.asset("assets/icons/${iconNames[index]}.png")
+                            .pSymmetric(
+                                h: index == 0
+                                    ? forWidth(38)
+                                    : index == 5
+                                        ? forWidth(40)
+                                        : forWidth(35)),
+                        sizedBoxForHeight(index == 0
+                            ? 13
+                            : index == 5
+                                ? 24
+                                : 20),
+                        Text(
+                          shortNames[index],
+                          style: TextStyle(
+                              fontSize: forHeight(16),
+                              fontWeight: FontWeight.w600),
+                        ),
+                        sizedBoxForHeight(8),
+                      ],
+                    ),
+                    decoration: BoxDecoration(
+                      color: colors[index],
+                      borderRadius: BorderRadius.circular(forHeight(10)),
+                    ),
+                  ),
                 );
               },
               childCount: 6,
