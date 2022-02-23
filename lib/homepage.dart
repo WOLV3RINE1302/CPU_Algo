@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
             title: Text(
               "CPU Scheduling Algorithms",
               style: TextStyle(color: Vx.black, fontSize: forHeight(16)),
-            ),
+            ).objectBottomCenter(),
           ),
         ),
         SliverPadding(

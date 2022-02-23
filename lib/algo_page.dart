@@ -44,8 +44,8 @@ class _AlgoPageState extends State<AlgoPage> {
                   EdgeInsets.fromLTRB(forWidth(10), 0, 0, forHeight(6)),
               title: Text(
                 fullNames[widget.mainIndex],
-                style: TextStyle(color: Vx.black, fontSize: forHeight(16)),
-              ),
+                style: TextStyle(color: Vx.black, fontSize: forHeight(14)),
+              ).objectBottomCenter(),
             ),
           ),
         ],
