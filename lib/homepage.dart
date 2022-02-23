@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:os_project/algo_page.dart';
 import 'package:os_project/color_model.dart';
 import 'package:os_project/help_in_responsive_widgets.dart';
 import 'package:os_project/main.dart';
@@ -45,6 +47,11 @@ class _HomePageState extends State<HomePage> {
             delegate: SliverChildBuilderDelegate(
               (_, int index) {
                 return GestureDetector(
+                  onTap: () => Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => AlgoPage(index),
+                      )),
                   onLongPress: () =>
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     backgroundColor: colors[index],
