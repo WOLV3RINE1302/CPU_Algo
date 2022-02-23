@@ -42,7 +42,7 @@ Priority Based Scheduling(PBS)*/
 List<String> fullNames = [
   "First Come First Serve",
   "Shortest Job First",
-  "Round-Robin Scheduling",
+  "Round Robin Scheduling",
   "Shortest Remaining Time First",
   "Priority Based Scheduling",
   "About Project"

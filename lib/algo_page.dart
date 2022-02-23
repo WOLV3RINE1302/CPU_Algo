@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:os_project/main.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import 'help_in_responsive_widgets.dart';
 
 class AlgoPage extends StatefulWidget {
@@ -29,7 +28,8 @@ class _AlgoPageState extends State<AlgoPage> {
         slivers: <Widget>[
           SliverAppBar(
             stretch: true,
-            expandedHeight: forHeight(180),
+            leading: Container(),
+            expandedHeight: forHeight(230),
             backgroundColor: colors[widget.mainIndex],
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
@@ -37,7 +37,7 @@ class _AlgoPageState extends State<AlgoPage> {
                 width: forWidth(100),
                 child: Image.asset(
                         "assets/icons/${iconNames[widget.mainIndex]}.png")
-                    .pSymmetric(v: forHeight(13)),
+                    .pSymmetric(v: forHeight(27)),
               ).pOnly(bottom: forHeight(40)),
               stretchModes: <StretchMode>[StretchMode.zoomBackground],
               titlePadding:
