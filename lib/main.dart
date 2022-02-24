@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:os_project/about_page_view.dart';
 import 'package:os_project/color_model.dart';
+import 'package:os_project/fcfs_page_view.dart';
 import 'package:os_project/homepage.dart';
+import 'package:os_project/pbs_page_view.dart';
+import 'package:os_project/rrs_page_view.dart';
+import 'package:os_project/sjf_page_view.dart';
+import 'package:os_project/strf_page_view.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 void main() async {
@@ -30,6 +36,14 @@ List<Color> colors = [
   ColorModel().yellow,
   ColorModel().orange,
   Vx.white,
+];
+List<PageView> pagesViews = [
+  pageViewForFCFS(),
+  pageViewForSJF(),
+  pageViewForRRS(),
+  pageViewForSRTF(),
+  pageViewForPBS(),
+  pageViewForAboutUs(),
 ];
 
 /* 

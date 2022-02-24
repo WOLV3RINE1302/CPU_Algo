@@ -1,3 +1,4 @@
+// ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:os_project/main.dart';
@@ -6,7 +7,8 @@ import 'help_in_responsive_widgets.dart';
 
 class AlgoPage extends StatefulWidget {
   int mainIndex;
-  AlgoPage(this.mainIndex);
+  PageView pageView;
+  AlgoPage(this.mainIndex,this.pageView);
   @override
   State<AlgoPage> createState() => _AlgoPageState();
 }
@@ -48,6 +50,24 @@ class _AlgoPageState extends State<AlgoPage> {
               ).objectBottomCenter(),
             ),
           ),
+          SliverPadding(
+            padding: EdgeInsets.fromLTRB(
+                forWidth(10), forHeight(18), forWidth(10), 0),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (_, int index) {
+                  return Container(
+                    height: height * 66,
+                    child: widget.pageView,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(forHeight(10)),
+                    ),
+                  );
+                },
+                childCount: 1,
+              ),
+            ),
+          )
         ],
       ),
     );

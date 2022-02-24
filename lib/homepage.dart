@@ -22,12 +22,58 @@ class _HomePageState extends State<HomePage> {
           expandedHeight: forHeight(180),
           backgroundColor: Vx.white,
           flexibleSpace: FlexibleSpaceBar(
-            background: Container(
-              height: forHeight(100),
-              width: forWidth(100),
-              child: Image.asset("assets/icons/app_icon.png")
-                  .pSymmetric(v: forHeight(13)),
-            ).pOnly(bottom: forHeight(40)),
+            background: GestureDetector(
+              onTap: () => showModalBottomSheet(
+                  builder: (context) => Container(
+                        color: Vx.black,
+                        height: forHeight(342),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "What is Scheduling?",
+                              style: TextStyle(
+                                  fontSize: forHeight(20),
+                                  fontWeight: FontWeight.w800,
+                                  color: Vx.white),
+                            ),
+                            sizedBoxForHeight(4),
+                            Text(
+                              "Scheduling of processes is done to finish the work on time. ",
+                              style: TextStyle(
+                                  fontSize: forHeight(16), color: Vx.white),
+                            ),
+                            sizedBoxForHeight(20),
+                            Text(
+                              "Why do we need scheduling?",
+                              style: TextStyle(
+                                  fontSize: forHeight(20),
+                                  fontWeight: FontWeight.w800,
+                                  color: Vx.white),
+                            ),
+                            sizedBoxForHeight(4),
+                            Text(
+                              "I/O and CPU time are both involved in a "
+                              "typical procedure. Time spent waiting for "
+                              "I/O in a uniprogramming system like MS-DOS "
+                              "is wasted, and CPU is free during this time. "
+                              "One process can use the CPU while another waits "
+                              "for I/O in multiprogramming systems. Only process "
+                              "scheduling allows for this.",
+                              style: TextStyle(
+                                  fontSize: forHeight(16), color: Vx.white),
+                            )
+                          ],
+                        ).pLTRB(forWidth(15), forHeight(20), forWidth(15), 0),
+                      ),
+                  context: context),
+              child: Container(
+                height: forHeight(100),
+                width: forWidth(100),
+                child: Image.asset("assets/icons/app_icon.png")
+                    .pSymmetric(v: forHeight(13)),
+              ).pOnly(bottom: forHeight(40)),
+            ),
             stretchModes: <StretchMode>[StretchMode.zoomBackground],
             titlePadding: EdgeInsets.fromLTRB(forWidth(10), 0, 0, forHeight(6)),
             title: Text(
@@ -50,7 +96,8 @@ class _HomePageState extends State<HomePage> {
                   onTap: () => Navigator.push(
                       context,
                       CupertinoPageRoute(
-                        builder: (context) => AlgoPage(index),
+                        builder: (context) =>
+                            AlgoPage(index, pagesViews[index]),
                       )),
                   onLongPress: () =>
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
