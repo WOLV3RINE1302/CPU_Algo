@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:os_project/about_page_view.dart';
 import 'package:os_project/color_model.dart';
 import 'package:os_project/fcfs_page_view.dart';
@@ -11,7 +12,8 @@ import 'package:os_project/strf_page_view.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  final wfb = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: wfb);
   runApp(VxState(store: MyStore(), child: MaterialApp(home: MyApp())));
 }
 

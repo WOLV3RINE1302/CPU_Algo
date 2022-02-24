@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:os_project/algo_page.dart';
 import 'package:os_project/color_model.dart';
 import 'package:os_project/help_in_responsive_widgets.dart';
@@ -12,6 +13,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 1), () {
+      FlutterNativeSplash.remove();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
