@@ -24,7 +24,7 @@ PageView pageViewForAboutUs() {
                 fontWeight: FontWeight.w700),
           ),
           sizedBoxForHeight(30),
-          rowForStudentNameAndRollNumber("Sachinkumar Lakum", "20BCP128"),
+          rowForStudentNameAndRollNumber("Sachinkumar Lakum", "20BCP129"),
           sizedBoxForHeight(18),
           rowForStudentNameAndRollNumber("Samarth Parmar", "20BCP114"),
           sizedBoxForHeight(18),
