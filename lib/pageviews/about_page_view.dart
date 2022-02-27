@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'help_in_responsive_widgets.dart';
+import '../widget/help_in_responsive_widgets.dart';
 
 PageView pageViewForAboutUs() {
   return PageView(

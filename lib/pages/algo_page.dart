@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:os_project/main.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'help_in_responsive_widgets.dart';
+import '../widget/help_in_responsive_widgets.dart';
 
 class AlgoPage extends StatefulWidget {
   int mainIndex;
-  PageView pageView;
-  AlgoPage(this.mainIndex,this.pageView);
+  Widget pageView;
+  AlgoPage(this.mainIndex, this.pageView);
   @override
   State<AlgoPage> createState() => _AlgoPageState();
 }
@@ -52,12 +52,12 @@ class _AlgoPageState extends State<AlgoPage> {
           ),
           SliverPadding(
             padding: EdgeInsets.fromLTRB(
-                forWidth(10), forHeight(18), forWidth(10), 0),
+                forWidth(10), forHeight(0), forWidth(10), 0),
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(
                 (_, int index) {
                   return Container(
-                    height: height * 66,
+                    height: height * 70,
                     child: widget.pageView,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(forHeight(10)),

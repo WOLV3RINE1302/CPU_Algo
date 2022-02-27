@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:os_project/about_page_view.dart';
-import 'package:os_project/color_model.dart';
-import 'package:os_project/fcfs_page_view.dart';
-import 'package:os_project/homepage.dart';
-import 'package:os_project/pbs_page_view.dart';
-import 'package:os_project/rrs_page_view.dart';
-import 'package:os_project/sjf_page_view.dart';
-import 'package:os_project/strf_page_view.dart';
+import 'package:os_project/pages/homepage.dart';
+import 'package:os_project/pageviews/about_page_view.dart';
+import 'package:os_project/model/color_model.dart';
+import 'package:os_project/pageviews/pbs_page_view.dart';
+import 'package:os_project/pageviews/rrs_page_view.dart';
+import 'package:os_project/pageviews/sjf_page_view.dart';
+import 'package:os_project/pageviews/strf_page_view.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'pageviews/fcfs_page_view.dart';
 
 void main() async {
   final wfb = WidgetsFlutterBinding.ensureInitialized();
@@ -39,12 +39,12 @@ List<Color> colors = [
   ColorModel().orange,
   Vx.white,
 ];
-List<PageView> pagesViews = [
-  pageViewForFCFS(),
-  pageViewForSJF(),
-  pageViewForRRS(),
-  pageViewForSRTF(),
-  pageViewForPBS(),
+List<Widget> pagesViews = [
+  FCFCPageView(),
+  SJFPageView(),
+  RRSPageView(),
+  SRTFPageView(),
+  PBSPageView(),
   pageViewForAboutUs(),
 ];
 
@@ -66,7 +66,12 @@ List<String> fullNames = [
 List<String> shortNames = ["FCFS", "SJF", "RRS", "SRTF", "PBS", "About"];
 List<String> iconNames = ["fcfs", "sjf", "rr", "srtf", "pbs", "about"];
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height / 100;
