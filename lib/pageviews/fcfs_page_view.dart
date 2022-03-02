@@ -368,7 +368,7 @@ class _FCFCPageViewState extends State<FCFCPageView> {
                               : waitingTime["P-${item.id}"].toInt();
                           return Container(
                             height: forHeight(280),
-                            width: forHeight(185),
+                            width: forHeight(175),
                             decoration: BoxDecoration(
                               color: ColorModel().red,
                               borderRadius: BorderRadius.circular(
