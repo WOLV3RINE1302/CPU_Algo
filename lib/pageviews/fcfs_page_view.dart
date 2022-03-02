@@ -250,56 +250,78 @@ class _FCFCPageViewState extends State<FCFCPageView> {
             sizedBoxForHeight(30),
             GestureDetector(
               onTap: () {
-                Temp.list.clear();
-                Temp.id.clear();
-                Temp.time.clear();
-                Temp.colors.clear();
-                FCFSModel.tableListValue = FCFSModel.tableListValue
-                    .sortedBy((a, b) => a.atValue.compareTo(b.atValue));
-                completionTime = List.generate(
-                    FCFSModel.tableListValue.length, (index) => 0);
-
-                for (var i = 0; i < completionTime.length; i++) {
-                  Temp.list.add(0);
-                  Temp.id.add(FCFSModel.tableListValue[i].id);
-                  Temp.time.add(FCFSModel.tableListValue[i].cpuBurstValue);
-                  Temp.colors.add(ColorModel().red);
-                }
-                for (var i = 0; i < FCFSModel.tableListValue.length; i++) {
-                  completionTime[i] = 0;
-                  if (i != 0) {
-                    if (completionTime[i - 1] <
-                        FCFSModel.tableListValue[i].atValue) {
-                      for (var k = i;
-                          k < FCFSModel.tableListValue.length;
-                          k++) {
-                        completionTime[k] +=
-                            FCFSModel.tableListValue[i].atValue -
-                                completionTime[i - 1];
-                      }
+                bool isFieldsEmpty = false;
+                for (var item in FCFSModel.tableListValue) {
+                  if (isOn) {
+                    isFieldsEmpty = item.cpuBurstValue != 0 || item.cpu != 0;
+                    if (!isFieldsEmpty) {
+                      break;
+                    }
+                  } else {
+                    isFieldsEmpty = item.cpuBurstValue != 0;
+                    if (!isFieldsEmpty) {
+                      break;
                     }
                   }
-                  for (var j = 0;
-                      j < FCFSModel.tableListValue.sublist(0, i + 1).length;
-                      j++) {
-                    completionTime[i] +=
-                        FCFSModel.tableListValue[j].cpuBurstValue;
-                  }
-                  taTime["P-$i"] =
-                      completionTime[i] - FCFSModel.tableListValue[i].atValue;
-                  waitingTime["P-$i"] = taTime["P-$i"] -
-                      FCFSModel.tableListValue[i].cpuBurstValue;
-                  // print(i);
-                  // print("com: ${completionTime[i]}");
-                  // print("taTime: ${taTime["P-$i"]}");
-                  // print("waitingTime: ${waitingTime["P-$i"]}");
                 }
-                setState(() {
-                  isNextPageVisible = true;
-                });
-                pc.nextPage(
-                    duration: Duration(milliseconds: 300),
-                    curve: Curves.linear);
+                if (isFieldsEmpty) {
+                  Temp.list.clear();
+                  Temp.id.clear();
+                  Temp.time.clear();
+                  Temp.colors.clear();
+                  FCFSModel.tableListValue = FCFSModel.tableListValue
+                      .sortedBy((a, b) => a.atValue.compareTo(b.atValue));
+                  completionTime = List.generate(
+                      FCFSModel.tableListValue.length, (index) => 0);
+
+                  for (var i = 0; i < completionTime.length; i++) {
+                    Temp.list.add(0);
+                    Temp.id.add(FCFSModel.tableListValue[i].id);
+                    Temp.time.add(FCFSModel.tableListValue[i].cpuBurstValue);
+                    Temp.colors.add(ColorModel().red);
+                  }
+                  for (var i = 0; i < FCFSModel.tableListValue.length; i++) {
+                    completionTime[i] = 0;
+                    if (i != 0) {
+                      if (completionTime[i - 1] <
+                          FCFSModel.tableListValue[i].atValue) {
+                        for (var k = i;
+                            k < FCFSModel.tableListValue.length;
+                            k++) {
+                          completionTime[k] +=
+                              FCFSModel.tableListValue[i].atValue -
+                                  completionTime[i - 1];
+                        }
+                      }
+                    }
+                    for (var j = 0;
+                        j < FCFSModel.tableListValue.sublist(0, i + 1).length;
+                        j++) {
+                      completionTime[i] +=
+                          FCFSModel.tableListValue[j].cpuBurstValue;
+                    }
+                    taTime["P-$i"] =
+                        completionTime[i] - FCFSModel.tableListValue[i].atValue;
+                    waitingTime["P-$i"] = taTime["P-$i"] -
+                        FCFSModel.tableListValue[i].cpuBurstValue;
+                    // print(i);
+                    // print("com: ${completionTime[i]}");
+                    // print("taTime: ${taTime["P-$i"]}");
+                    // print("waitingTime: ${waitingTime["P-$i"]}");
+                  }
+                  setState(() {
+                    isNextPageVisible = true;
+                  });
+                  pc.nextPage(
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.linear);
+                } else {
+                  VxToast.show(
+                    context,
+                    msg: "Please Enter Burst Time",
+                    textSize: forHeight(16),
+                  );
+                }
               },
               child: Container(
                 height: forHeight(48),
