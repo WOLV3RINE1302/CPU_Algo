@@ -75,7 +75,7 @@ class _FCFSTableClassState extends State<FCFSTableClass> {
                 atValue = 0;
               }
               FCFSModel.tableListValue[widget.index] =
-                  FCFSModel(atValue, cpuBurstValue, ioTime, cpu);
+                  FCFSModel(widget.index, atValue, cpuBurstValue, ioTime, cpu);
             },
           ),
           decoration: BoxDecoration(
@@ -111,7 +111,7 @@ class _FCFSTableClassState extends State<FCFSTableClass> {
                 cpuBurstValue = 0;
               }
               FCFSModel.tableListValue[widget.index] =
-                  FCFSModel(atValue, cpuBurstValue, ioTime, cpu);
+                  FCFSModel(widget.index, atValue, cpuBurstValue, ioTime, cpu);
             },
           ),
           decoration: BoxDecoration(
@@ -157,8 +157,8 @@ class _FCFSTableClassState extends State<FCFSTableClass> {
                 } catch (e) {
                   ioTime = 0;
                 }
-                FCFSModel.tableListValue[widget.index] =
-                    FCFSModel(atValue, cpuBurstValue, ioTime, cpu);
+                FCFSModel.tableListValue[widget.index] = FCFSModel(
+                    widget.index, atValue, cpuBurstValue, ioTime, cpu);
               },
             ),
             decoration: BoxDecoration(
@@ -200,8 +200,8 @@ class _FCFSTableClassState extends State<FCFSTableClass> {
                 } catch (e) {
                   cpu = 0;
                 }
-                FCFSModel.tableListValue[widget.index] =
-                    FCFSModel(atValue, cpuBurstValue, ioTime, cpu);
+                FCFSModel.tableListValue[widget.index] = FCFSModel(
+                    widget.index, atValue, cpuBurstValue, ioTime, cpu);
               },
             ),
             decoration: BoxDecoration(

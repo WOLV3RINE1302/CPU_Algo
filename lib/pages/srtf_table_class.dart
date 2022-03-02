@@ -1,4 +1,5 @@
 import 'package:os_project/model/fcfs_model.dart';
+import 'package:os_project/model/srtf_model.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
 
@@ -74,8 +75,8 @@ class _SRTFTableClassState extends State<SRTFTableClass> {
               } catch (e) {
                 atValue = 0;
               }
-              FCFSModel.tableListValue[widget.index] =
-                  FCFSModel(atValue, cpuBurstValue, ioTime, cpu);
+              SRTFModel.tableListValue[widget.index] =
+                  SRTFModel(atValue, cpuBurstValue, ioTime, cpu);
             },
           ),
           decoration: BoxDecoration(
@@ -110,8 +111,8 @@ class _SRTFTableClassState extends State<SRTFTableClass> {
               } catch (e) {
                 cpuBurstValue = 0;
               }
-              FCFSModel.tableListValue[widget.index] =
-                  FCFSModel(atValue, cpuBurstValue, ioTime, cpu);
+              SRTFModel.tableListValue[widget.index] =
+                  SRTFModel(atValue, cpuBurstValue, ioTime, cpu);
             },
           ),
           decoration: BoxDecoration(
@@ -157,8 +158,8 @@ class _SRTFTableClassState extends State<SRTFTableClass> {
                 } catch (e) {
                   ioTime = 0;
                 }
-                FCFSModel.tableListValue[widget.index] =
-                    FCFSModel(atValue, cpuBurstValue, ioTime, cpu);
+                SRTFModel.tableListValue[widget.index] =
+                    SRTFModel(atValue, cpuBurstValue, ioTime, cpu);
               },
             ),
             decoration: BoxDecoration(
@@ -200,8 +201,8 @@ class _SRTFTableClassState extends State<SRTFTableClass> {
                 } catch (e) {
                   cpu = 0;
                 }
-                FCFSModel.tableListValue[widget.index] =
-                    FCFSModel(atValue, cpuBurstValue, ioTime, cpu);
+                SRTFModel.tableListValue[widget.index] =
+                    SRTFModel(atValue, cpuBurstValue, ioTime, cpu);
               },
             ),
             decoration: BoxDecoration(

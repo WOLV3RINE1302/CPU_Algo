@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -6,7 +5,6 @@ import '../main.dart';
 import '../model/SJF_model.dart';
 import '../model/color_model.dart';
 import '../pages/pbs_table_class.dart';
-import '../pages/srtf_table_class.dart';
 import '../widget/help_in_responsive_widgets.dart';
 
 class PBSPageView extends StatefulWidget {
