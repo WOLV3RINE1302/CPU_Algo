@@ -19,6 +19,7 @@ void main() async {
 
 class MyStore extends VxStore {
   bool changeView = true;
+
 }
 
 class ChangeViewMutation extends VxMutation<MyStore> {
@@ -92,3 +93,8 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+//1 - Remove gantt chart implementation and add function to go to page 4 on clicking
+// "Run" which implements stack
+//2 - Add hold function for AT and other short-from named which shows their full
+// name or replace it with their full name
+//3 - Add hint to show that we can swipe to go to next page
