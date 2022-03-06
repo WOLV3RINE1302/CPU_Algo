@@ -288,6 +288,18 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
               showInGraphList = [
                 {"id": "", "value": 0, "color": ColorModel().red}
               ];
+              for (var i = 0; i < FCFSModel.tableListValue.length; i++) {
+                FCFSModel item = FCFSModel.tableListValue[i];
+                FCFSModel.tableListValue[i] = FCFSModel(
+                    item.id,
+                    item.oldAtValue,
+                    item.oldAtValue,
+                    item.oldcpuBurstValue,
+                    item.oldcpuBurstValue,
+                    item.ioTime,
+                    item.cpu,
+                    false);
+              }
               FCFSModel.tableListValue = FCFSModel.tableListValue
                   .sortedBy((a, b) => a.atValue.compareTo(b.atValue));
               if (FCFSModel.tableListValue[0].atValue > 0) {
@@ -311,8 +323,15 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                         turnAroundTime["P-${item.id}"] -
                             (item.oldcpuBurstValue + item.cpu);
                   }
-                  item = FCFSModel(item.id, at.round(), item.atValue, item.cpu,
-                      item.cpuBurstValue, item.ioTime, item.cpu, true);
+                  item = FCFSModel(
+                      item.id,
+                      at.round(),
+                      item.oldAtValue,
+                      item.cpu,
+                      item.oldcpuBurstValue,
+                      item.ioTime,
+                      item.cpu,
+                      true);
                   FCFSModel.tableListValue[0] = item;
                   if (FCFSModel.tableListValue[1].atValue >
                           completionTime.length &&
@@ -360,6 +379,8 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                       .add({"id": "", "value": 0, "color": ColorModel().red});
                 }
               }
+              FCFSModel.tableListValue = FCFSModel.tableListValue
+                  .sortedBy((a, b) => a.id.compareTo(b.id));
               setState(() {
                 isNextPageVisible = true;
               });
