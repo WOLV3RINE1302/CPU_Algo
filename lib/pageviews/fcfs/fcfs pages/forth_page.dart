@@ -13,6 +13,7 @@ class FCFSPageViewForthPage extends StatefulWidget {
 }
 
 class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
+  List endItemTime = [];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -65,20 +66,36 @@ class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
                     reverse: true,
                     physics: AlwaysScrollableScrollPhysics(
                         parent: BouncingScrollPhysics()),
-                    itemCount: showInGraphList.length,
+                    itemCount: showInGraphList.length - 1,
                     itemBuilder: (BuildContext context, int index) {
-                      return AnimatedContainer(
-                        duration: Duration(milliseconds: 1000),
-                        height: forHeight(70),
-                        child: Text(showInGraphList[index]["color"] ==
-                                    ColorModel().red
-                                ? ""
-                                : showInGraphList[index]["id"])
-                            .centered(),
-                        width: double.parse(
-                            showInGraphList[index]["value"].toString()),
-                        color: showInGraphList[index]["color"],
-                      ).objectCenterLeft();
+                      String endTime;
+                      try {
+                        endTime = endItemTime[index].toString();
+                      } catch (e) {
+                        endTime = "";
+                      }
+                      return Row(
+                        children: [
+                          AnimatedContainer(
+                            duration: Duration(milliseconds: 1000),
+                            height: forHeight(70),
+                            child: Text(showInGraphList[index]["color"] ==
+                                        ColorModel().red
+                                    ? ""
+                                    : showInGraphList[index]["id"])
+                                .centered(),
+                            width: double.parse(
+                                showInGraphList[index]["value"].toString()),
+                            color: showInGraphList[index]["color"],
+                          ).objectCenterLeft(),
+                          sizedBoxForWidth(10),
+                          Text(
+                            endTime,
+                            style: TextStyle(
+                                fontSize: forHeight(18), color: Vx.white),
+                          )
+                        ],
+                      );
                     },
                   ),
                 ),
@@ -93,7 +110,7 @@ class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
                       for (var i = 0; i < completionTime.length; i++) {
                         if (i == 0) {
                           int value = showInGraphList[0]["value"] +=
-                              forHeight(40).round();
+                              forWidth(40).round();
                           runningItem = completionTime[0];
                           showInGraphList[0] = {
                             "id": completionTime[0],
@@ -109,7 +126,7 @@ class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
                           if (completionTime[i] == completionTime[i - 1]) {
                             runningItem = completionTime[i];
                             int value = showInGraphList[j]["value"] +=
-                                forHeight(40).round();
+                                forWidth(40).round();
                             showInGraphList[j] = {
                               "id": completionTime[i],
                               "value": value,
@@ -119,6 +136,7 @@ class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
                             time++;
                             setState(() {});
                           } else {
+                            endItemTime.add(time);
                             showInGraphList[j] = {
                               "id": completionTime[i - 1],
                               "value": showInGraphList[j]["value"],
@@ -127,7 +145,7 @@ class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
                             j++;
                             runningItem = completionTime[i];
                             int value = showInGraphList[j]["value"] +=
-                                forHeight(40).round();
+                                forWidth(40).round();
                             showInGraphList[j] = {
                               "id": completionTime[i],
                               "value": value,
@@ -145,11 +163,13 @@ class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
                         "value": showInGraphList[j]["value"],
                         "color": Vx.white
                       };
+                      endItemTime.add(time);
                       setState(() {
                         runPhase = 2;
                       });
                     } else if (runPhase == 1) {
                     } else {
+                      endItemTime.clear();
                       for (var i = 0; i < showInGraphList.length; i++) {
                         showInGraphList[i] = {
                           "id": "",
