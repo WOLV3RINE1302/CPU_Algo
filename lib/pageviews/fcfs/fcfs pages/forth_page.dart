@@ -110,7 +110,7 @@ class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
                       for (var i = 0; i < completionTime.length; i++) {
                         if (i == 0) {
                           int value = showInGraphList[0]["value"] +=
-                              forWidth(40).round();
+                              forWidth(30).round();
                           runningItem = completionTime[0];
                           showInGraphList[0] = {
                             "id": completionTime[0],
@@ -126,7 +126,7 @@ class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
                           if (completionTime[i] == completionTime[i - 1]) {
                             runningItem = completionTime[i];
                             int value = showInGraphList[j]["value"] +=
-                                forWidth(40).round();
+                                forWidth(30).round();
                             showInGraphList[j] = {
                               "id": completionTime[i],
                               "value": value,
@@ -145,7 +145,7 @@ class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
                             j++;
                             runningItem = completionTime[i];
                             int value = showInGraphList[j]["value"] +=
-                                forWidth(40).round();
+                                forWidth(30).round();
                             showInGraphList[j] = {
                               "id": completionTime[i],
                               "value": value,
