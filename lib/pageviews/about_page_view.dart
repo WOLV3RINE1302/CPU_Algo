@@ -9,6 +9,7 @@ PageView pageViewForAboutUs() {
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          sizedBoxForHeight(5),
           Text(
             "Team Members",
             style: TextStyle(

@@ -1,4 +1,3 @@
-import 'package:os_project/model/fcfs_model.dart';
 import 'package:os_project/model/sjf_model.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';

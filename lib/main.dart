@@ -9,7 +9,7 @@ import 'package:os_project/pageviews/rrs_page_view.dart';
 import 'package:os_project/pageviews/sjf_page_view.dart';
 import 'package:os_project/pageviews/strf_page_view.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'pageviews/fcfs_page_view.dart';
+import 'pageviews/fcfs/fcfs_page_view.dart';
 
 void main() async {
   final wfb = WidgetsFlutterBinding.ensureInitialized();
@@ -18,14 +18,13 @@ void main() async {
 }
 
 class MyStore extends VxStore {
-  bool changeView = true;
-
+  bool setheState = true;
 }
 
-class ChangeViewMutation extends VxMutation<MyStore> {
+class SetheStateMutation extends VxMutation<MyStore> {
   @override
   perform() {
-    store.changeView = !store.changeView;
+    store.setheState = !store.setheState;
   }
 }
 
@@ -77,7 +76,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height / 100;
     width = MediaQuery.of(context).size.width / 100;
-    VxState.watch(context, on: [ChangeViewMutation]);
+    VxState.watch(context, on: [SetheStateMutation]);
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Vx.black,
@@ -93,8 +92,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-//1 - Remove gantt chart implementation and add function to go to page 4 on clicking
-// "Run" which implements stack
-//2 - Add hold function for AT and other short-from named which shows their full
-// name or replace it with their full name
-//3 - Add hint to show that we can swipe to go to next page
