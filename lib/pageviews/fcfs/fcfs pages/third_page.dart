@@ -1,3 +1,4 @@
+import 'package:os_project/pageviews/fcfs/fcfs%20pages/second_page.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +27,33 @@ class _FCFSPageViewThirdPageState extends State<FCFSPageViewThirdPage> {
               physics: AlwaysScrollableScrollPhysics(
                   parent: BouncingScrollPhysics()),
               children: [
+                sizedBoxForHeight(15),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Average Waiting Time",
+                      style:
+                          TextStyle(color: Vx.white, fontSize: forHeight(20)),
+                    ),
+                    Text(
+                      "$averageWaitingTime Sec",
+                      style:
+                          TextStyle(color: Vx.white, fontSize: forHeight(30)),
+                    ),
+                    sizedBoxForHeight(10),
+                    Text(
+                      "Total CPU Idle Time",
+                      style:
+                          TextStyle(color: Vx.white, fontSize: forHeight(20)),
+                    ),
+                    Text(
+                      "$totalCpuIdleTime Sec",
+                      style:
+                          TextStyle(color: Vx.white, fontSize: forHeight(30)),
+                    ),
+                  ],
+                ).pOnly(left: forWidth(10)),
                 Container(
                   width: forWidth(310),
                   child: ListView.separated(
@@ -71,7 +99,7 @@ class _FCFSPageViewThirdPageState extends State<FCFSPageViewThirdPage> {
                           ],
                         ).pSymmetric(h: forWidth(12), v: forHeight(14)),
                       ).pSymmetric(h: forWidth(10)).pOnly(
-                          top: index == 0 ? forHeight(40) : 0,
+                          top: index == 0 ? forHeight(15) : 0,
                           bottom: index == FCFSModel.tableListValue.length - 1
                               ? forHeight(20)
                               : 0);

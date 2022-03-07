@@ -1,3 +1,4 @@
+import 'package:os_project/pageviews/fcfs/fcfs%20pages/forth_page.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,9 @@ class FCFSPageViewSecondPage extends StatefulWidget {
   @override
   State<FCFSPageViewSecondPage> createState() => _FCFSPageViewSecondPageState();
 }
+
+double averageWaitingTime = 0;
+int totalCpuIdleTime = 0;
 
 class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
   int length = 1;
@@ -285,6 +289,11 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
             }
             if (isFieldsEmpty) {
               completionTime.clear();
+              runPhase = 0;
+              time = 0;
+              endItemTime = [];
+              totalCpuIdleTime = 0;
+              averageWaitingTime = 0;
               showInGraphList = [
                 {"id": "", "value": 0, "color": ColorModel().red}
               ];
@@ -306,6 +315,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                 for (var i = 0; i < FCFSModel.tableListValue[0].atValue; i++) {
                   completionTime.add("CPU Idle");
                 }
+                totalCpuIdleTime = completionTime.length;
               }
               if (isOn) {
                 for (var i = 0; i < FCFSModel.tableListValue.length * 2;) {
@@ -322,6 +332,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                     waitingTime["P-${item.id}"] =
                         turnAroundTime["P-${item.id}"] -
                             (item.oldcpuBurstValue + item.cpu);
+                    averageWaitingTime += waitingTime["P-${item.id}"];
                   }
                   item = FCFSModel(
                       item.id,
@@ -337,10 +348,12 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                           completionTime.length &&
                       FCFSModel.tableListValue[1].isFinish &&
                       i != FCFSModel.tableListValue.length * 2 - 1) {
-                    completionTime.addAll(List.generate(
+                    List cpuIdle = List.generate(
                         FCFSModel.tableListValue[1].atValue -
                             completionTime.length,
-                        (index) => "CPU Idle"));
+                        (index) => "CPU Idle");
+                    completionTime.addAll(cpuIdle);
+                    totalCpuIdleTime += cpuIdle.length;
                   }
                   FCFSModel.tableListValue = FCFSModel.tableListValue
                       .sortedBy((a, b) => a.atValue.compareTo(b.atValue));
@@ -357,11 +370,14 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                         (completionTime.length - item.atValue);
                     waitingTime["P-${item.id}"] =
                         (turnAroundTime["P-${item.id}"] - item.cpuBurstValue);
+                    averageWaitingTime += waitingTime["P-${item.id}"];
                   } else {
                     if (item.atValue > completionTime.length) {
-                      completionTime.addAll(List.generate(
+                      List cpuIdle = List.generate(
                           item.atValue - completionTime.length,
-                          (index) => "CPU Idle"));
+                          (index) => "CPU Idle");
+                      completionTime.addAll(cpuIdle);
+                      totalCpuIdleTime += cpuIdle.length;
                     }
                     completionTime.addAll(List.generate(
                         item.cpuBurstValue, (index) => "P-${item.id}"));
@@ -370,9 +386,12 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                         (completionTime.length - item.atValue);
                     waitingTime["P-${item.id}"] =
                         (turnAroundTime["P-${item.id}"] - item.cpuBurstValue);
+                    averageWaitingTime += waitingTime["P-${item.id}"];
                   }
                 }
               }
+              averageWaitingTime =
+                  averageWaitingTime / FCFSModel.tableListValue.length;
               for (var i = 0; i < completionTime.length; i++) {
                 if (i == 0 || completionTime[i] != completionTime[i - 1]) {
                   showInGraphList
@@ -398,7 +417,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
             height: forHeight(48),
             width: forHeight(155),
             child: Text(
-              "Calculation",
+              "Calculate",
               style: TextStyle(
                   color: Vx.black,
                   fontWeight: FontWeight.w600,

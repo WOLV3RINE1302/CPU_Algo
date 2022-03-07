@@ -12,8 +12,10 @@ class FCFSPageViewForthPage extends StatefulWidget {
   State<FCFSPageViewForthPage> createState() => _FCFSPageViewForthPageState();
 }
 
+List endItemTime = [];
+
 class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
-  List endItemTime = [];
+  ScrollController sc = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -64,6 +66,7 @@ class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
                   constraints: BoxConstraints(maxHeight: forHeight(370)),
                   child: ListView.builder(
                     reverse: true,
+                    controller: sc,
                     physics: AlwaysScrollableScrollPhysics(
                         parent: BouncingScrollPhysics()),
                     itemCount: showInGraphList.length - 1,
@@ -74,7 +77,11 @@ class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
                       } catch (e) {
                         endTime = "";
                       }
-                      return Row(
+                      return ListView(
+                        shrinkWrap: true,
+                        physics: AlwaysScrollableScrollPhysics(
+                            parent: BouncingScrollPhysics()),
+                        scrollDirection: Axis.horizontal,
                         children: [
                           AnimatedContainer(
                             duration: Duration(milliseconds: 1000),
@@ -83,7 +90,16 @@ class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
                                         ColorModel().red
                                     ? ""
                                     : showInGraphList[index]["id"])
-                                .centered(),
+                                .centered()
+                                .pOnly(
+                                    left: showInGraphList[index]["id"] ==
+                                                "CPU Idle" &&
+                                            double.parse(showInGraphList[index]
+                                                        ["value"]
+                                                    .toString()) ==
+                                                forWidth(60)
+                                        ? forWidth(14)
+                                        : 0),
                             width: double.parse(
                                 showInGraphList[index]["value"].toString()),
                             color: showInGraphList[index]["color"],
@@ -93,9 +109,9 @@ class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
                             endTime,
                             style: TextStyle(
                                 fontSize: forHeight(18), color: Vx.white),
-                          )
+                          ).objectCenter()
                         ],
-                      );
+                      ).h(forHeight(70));
                     },
                   ),
                 ),
@@ -107,6 +123,8 @@ class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
                         runPhase = 1;
                       });
                       int j = 0;
+                      int animatelimit = 3;
+                      double offsetOfAnimatedScroll = forHeight(100);
                       for (var i = 0; i < completionTime.length; i++) {
                         if (i == 0) {
                           int value = showInGraphList[0]["value"] +=
@@ -153,6 +171,16 @@ class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
                             };
                             await Future.delayed(Duration(seconds: 1));
                             time++;
+                            if (showInGraphList.length > 5 &&
+                                j > animatelimit &&
+                                j != showInGraphList.length - 2) {
+                              sc.animateTo(offsetOfAnimatedScroll,
+                                  duration: Duration(seconds: 1),
+                                  curve: Curves.linear);
+                              offsetOfAnimatedScroll += forHeight(60);
+                              animatelimit++;
+                              setState(() {});
+                            }
                             setState(() {});
                           }
                         }
