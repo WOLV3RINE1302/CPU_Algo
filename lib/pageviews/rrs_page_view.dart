@@ -6,6 +6,7 @@ import '../model/SJF_model.dart';
 import '../model/color_model.dart';
 import '../pages/rrs_table_class.dart';
 import '../widget/help_in_responsive_widgets.dart';
+import 'fcfs/fcfs_page_view.dart';
 
 class RRSPageView extends StatefulWidget {
   RRSPageView({Key? key}) : super(key: key);
@@ -16,6 +17,25 @@ class RRSPageView extends StatefulWidget {
 
 class _RRSPageViewState extends State<RRSPageView> {
   int length = 1;
+  void initState() {
+    super.initState();
+    setState(() {
+      time = 0;
+      runPhase = 0;
+      isNextPageVisible = false;
+      showInGraphList = [
+        {"id": "", "value": 0, "color": ColorModel().red}
+      ];
+    });
+    if (!isOnceNoticed) {
+      Future.delayed(Duration(milliseconds: 300), () {
+        VxToast.show(context,
+            msg: "Swipe To Go Next Page", textSize: forHeight(16));
+      });
+      isOnceNoticed = true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     bool isOn = SJFModel.ioSwitch;

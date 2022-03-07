@@ -37,7 +37,7 @@ class _FCFSPageViewThirdPageState extends State<FCFSPageViewThirdPage> {
                           TextStyle(color: Vx.white, fontSize: forHeight(20)),
                     ),
                     Text(
-                      "$averageWaitingTime Sec",
+                      "${averageWaitingTime.toStringAsFixed(2)} Sec",
                       style:
                           TextStyle(color: Vx.white, fontSize: forHeight(30)),
                     ),

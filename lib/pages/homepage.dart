@@ -125,12 +125,12 @@ class _HomePageState extends State<HomePage> {
                             .pSymmetric(
                                 h: index == 0
                                     ? forWidth(38)
-                                    : index == 5
+                                    : index == 5 || index == 4
                                         ? forWidth(40)
                                         : forWidth(35)),
                         sizedBoxForHeight(index == 0
                             ? 13
-                            : index == 5
+                            : index == 5 || index == 4
                                 ? 24
                                 : 20),
                         Text(

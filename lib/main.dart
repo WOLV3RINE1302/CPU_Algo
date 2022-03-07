@@ -4,7 +4,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:os_project/pages/homepage.dart';
 import 'package:os_project/pageviews/about_page_view.dart';
 import 'package:os_project/model/color_model.dart';
-import 'package:os_project/pageviews/pbs_page_view.dart';
+import 'package:os_project/pageviews/documentation.dart';
 import 'package:os_project/pageviews/rrs_page_view.dart';
 import 'package:os_project/pageviews/sjf_page_view.dart';
 import 'package:os_project/pageviews/strf_page_view.dart';
@@ -44,7 +44,7 @@ List<Widget> pagesViews = [
   SJFPageView(),
   RRSPageView(),
   SRTFPageView(),
-  PBSPageView(),
+  Documentation(),
   pageViewForAboutUs(),
 ];
 
@@ -60,11 +60,18 @@ List<String> fullNames = [
   "Shortest Job First",
   "Round Robin Scheduling",
   "Shortest Remaining Time First",
-  "Priority Based Scheduling",
+  "Documentation Of Algorithms",
   "About Project"
 ];
-List<String> shortNames = ["FCFS", "SJF", "RRS", "SRTF", "PBS", "About"];
-List<String> iconNames = ["fcfs", "sjf", "rr", "srtf", "pbs", "about"];
+List<String> shortNames = [
+  "FCFS",
+  "SJF",
+  "RRS",
+  "SRTF",
+  "Documentation",
+  "About"
+];
+List<String> iconNames = ["fcfs", "sjf", "rr", "srtf", "docs", "about"];
 
 class MyApp extends StatefulWidget {
   @override
