@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../main.dart';
@@ -31,33 +32,37 @@ class _DocumentationState extends State<Documentation> {
               physics: AlwaysScrollableScrollPhysics(
                   parent: BouncingScrollPhysics()),
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  height: forHeight(131),
-                  decoration: BoxDecoration(
-                    color: colors[4],
-                    borderRadius: BorderRadius.circular(
-                      forHeight(6),
-                    ),
-                  ),
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        "assets/icons/${iconNames[index]}.png",
-                        height: forHeight(80),
+                return GestureDetector(
+                  onTap: () async => launch(documentsLinks[index]),
+                  child: Container(
+                    height: forHeight(131),
+                    decoration: BoxDecoration(
+                      color: colors[4],
+                      borderRadius: BorderRadius.circular(
+                        forHeight(6),
                       ),
-                      sizedBoxForWidth(15),
-                      Container(
-                          height: 131,
-                          width: width * 65.3,
-                          child: Text(
-                            fullNames[index],
-                            style: TextStyle(
-                                fontSize: forHeight(20),
-                                fontWeight: FontWeight.w600),
-                          ).objectCenterLeft())
-                    ],
-                  ).pOnly(left: forWidth(15)),
-                ).pOnly(top: index == 0 ? forHeight(25) : 0);
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Image.asset(
+                          "assets/icons/${iconNames[index]}.png",
+                          height: index == 2 ? forHeight(70) : forHeight(80),
+                        ),
+                        sizedBoxForWidth(15),
+                        Container(
+                            height: 131,
+                            width: width * 65.3,
+                            child: Text(
+                              fullNames[index],
+                              style: TextStyle(
+                                  fontSize: forHeight(20),
+                                  fontWeight: FontWeight.w600),
+                            ).objectCenterLeft())
+                      ],
+                    ).pOnly(left: forWidth(15)),
+                  ).pOnly(top: index == 0 ? forHeight(25) : 0),
+                );
               },
               separatorBuilder: (BuildContext context, int index) {
                 return sizedBoxForHeight(12);

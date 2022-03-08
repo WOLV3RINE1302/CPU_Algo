@@ -48,6 +48,13 @@ List<Widget> pagesViews = [
   pageViewForAboutUs(),
 ];
 
+List<String> documentsLinks = [
+  "https://docs.google.com/document/d/14lZ_Qfb2v98vzGaxnv7R9zZBy5uG128N_usf_J7kzPE/edit",
+  "https://docs.google.com/document/d/14lZ_Qfb2v98vzGaxnv7R9zZBy5uG128N_usf_J7kzPE/edit",
+  "https://docs.google.com/document/d/14lZ_Qfb2v98vzGaxnv7R9zZBy5uG128N_usf_J7kzPE/edit",
+  "https://docs.google.com/document/d/14lZ_Qfb2v98vzGaxnv7R9zZBy5uG128N_usf_J7kzPE/edit",
+];
+
 /* 
 First Come First Serve(FCFS)
 Shortest Job First(SJF) 

@@ -123,11 +123,12 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Image.asset("assets/icons/${iconNames[index]}.png")
                             .pSymmetric(
-                                h: index == 0
-                                    ? forWidth(38)
-                                    : index == 5 || index == 4
-                                        ? forWidth(40)
-                                        : forWidth(35)),
+                          h: index == 0
+                              ? forWidth(38)
+                              : index == 5 || index == 4 || index == 2
+                                  ? forWidth(40)
+                                  : forWidth(35),
+                        ),
                         sizedBoxForHeight(index == 0
                             ? 13
                             : index == 5 || index == 4
