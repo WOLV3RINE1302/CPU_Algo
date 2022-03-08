@@ -273,32 +273,53 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
         sizedBoxForHeight(30),
         GestureDetector(
           onTap: () {
-            bool isFieldsEmpty = false;
+            bool isFieldsEmpty =
+                false; //To make sure CPU Burst Time entities are not zero
+            //! Iterating items from FCFS Model tableListValue
             for (var item in FCFSModel.tableListValue) {
+              // If I/O Switch is enabled
               if (isOn) {
                 isFieldsEmpty = item.cpuBurstValue != 0 || item.cpu != 0;
+                //Break when CPU Burst entity are zero
                 if (!isFieldsEmpty) {
                   break;
                 }
-              } else {
+              } //If I/O Switch is disabled
+              else {
                 isFieldsEmpty = item.cpuBurstValue != 0;
+                //Break when CPU Burst entity is zero
                 if (!isFieldsEmpty) {
                   break;
                 }
               }
-            }
+            } // *Time complexity - O(n)
+
             if (isFieldsEmpty) {
+              //? Resets old values when re-calculating
+              /*
+              List of Process IDs for every second 
+              e.g - [P-1,P-1,CPU IDLE,P-2]
+              */
               completionTime.clear();
+              /*
+              Denotes Phase of Gantt Chart Animation
+              0 - Not running
+              1 - Running
+              2 - Finished and waiting for Reset
+              */
               runPhase = 0;
-              time = 0;
-              endItemTime = [];
-              totalCpuIdleTime = 0;
-              averageWaitingTime = 0;
+              time = 0; //Represents Runtime
+              endItemTime = []; //List of Completion Time of processes
+              totalCpuIdleTime = 0; // Total Idle time of CPU
+              averageWaitingTime = 0; //Average Waiting time of processes
               showInGraphList = [
+                //List for process animation
                 {"id": "", "value": 0, "color": ColorModel().red}
               ];
               for (var i = 0; i < FCFSModel.tableListValue.length; i++) {
+                //Passsing FCFS Model to item variable
                 FCFSModel item = FCFSModel.tableListValue[i];
+                //! Resets the initial value of table list value
                 FCFSModel.tableListValue[i] = FCFSModel(
                     item.id,
                     item.oldAtValue,
@@ -308,24 +329,43 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                     item.ioTime,
                     item.cpu,
                     false);
-              }
+              } // *Time complexity - O(n)
+
               FCFSModel.tableListValue = FCFSModel.tableListValue
                   .sortedBy((a, b) => a.atValue.compareTo(b.atValue));
+              // *Time complexity - O(n.log(n))
+
               if (FCFSModel.tableListValue[0].atValue > 0) {
                 for (var i = 0; i < FCFSModel.tableListValue[0].atValue; i++) {
                   completionTime.add("CPU Idle");
-                }
+                } // *Time complexity - O(n)
                 totalCpuIdleTime = completionTime.length;
               }
               if (isOn) {
                 for (var i = 0; i < FCFSModel.tableListValue.length * 2;) {
                   FCFSModel item = FCFSModel.tableListValue[0];
+                  // Adds entities according to process IDs
                   completionTime.addAll(List.generate(
                       item.cpuBurstValue, (index) => "P-${item.id}"));
+                  // *Time complexity - O(k), where k is the number of arguments passed
                   num at = item.isFinish
                       ? 99999
                       : item.ioTime + completionTime.length;
+                  /*
+                      If the process has returned from I/O, its arrival time is 
+                      set to 9999 and if it is being executed before going to 
+                      I/O its arrival time is set to Completion time + I/O time 
+                      which signifies the time when it’ll return from I/O.
+                      */
                   if (item.isFinish) {
+                    /*
+                    If the process has returned after I/O, its completion, 
+                    turn around and waiting time will be calculated as below:
+
+                    Completion time = Given CPU Burst Time
+	                  Turn Around TIme = Completion Time - Arrival Time
+	                  Waiting Time = Turn Around Time - CPU Burst TIme
+                    */
                     completionTimeMap["P-${item.id}"] = completionTime.length;
                     turnAroundTime["P-${item.id}"] =
                         completionTime.length - item.oldAtValue;
@@ -334,6 +374,9 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                             (item.oldcpuBurstValue + item.cpu);
                     averageWaitingTime += waitingTime["P-${item.id}"];
                   }
+                  /*Reinitialize item by replacing new arrival time value
+                  and CPU Burst value 
+                  */
                   item = FCFSModel(
                       item.id,
                       at.round(),
@@ -344,6 +387,11 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                       item.cpu,
                       true);
                   FCFSModel.tableListValue[0] = item;
+                  /*
+                  If two processes have the same arrival time one being 
+                  processed for the first time and the other being processed 
+                  after I/O, then the first one will be given priority.
+                  */
                   if (FCFSModel.tableListValue[1].atValue >
                           completionTime.length &&
                       FCFSModel.tableListValue[1].isFinish &&
@@ -358,8 +406,10 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                   FCFSModel.tableListValue = FCFSModel.tableListValue
                       .sortedBy((a, b) => a.atValue.compareTo(b.atValue));
                   i++;
-                }
-              } else {
+                } // *Time complexity - O(N*K(log(N))
+              }
+              //! When I/O is OFF
+              else {
                 for (var i = 0; i < FCFSModel.tableListValue.length; i++) {
                   FCFSModel item = FCFSModel.tableListValue[i];
                   if (i == 0) {
@@ -388,7 +438,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                         (turnAroundTime["P-${item.id}"] - item.cpuBurstValue);
                     averageWaitingTime += waitingTime["P-${item.id}"];
                   }
-                }
+                } // *Time complexity - O(N*K)
               }
               averageWaitingTime =
                   averageWaitingTime / FCFSModel.tableListValue.length;
@@ -397,15 +447,18 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                   showInGraphList
                       .add({"id": "", "value": 0, "color": ColorModel().red});
                 }
-              }
+              } // *Time complexity - O(N)
               FCFSModel.tableListValue = FCFSModel.tableListValue
                   .sortedBy((a, b) => a.id.compareTo(b.id));
+              // *Time complexity - O(N*log(N))
               setState(() {
                 isNextPageVisible = true;
               });
               widget.pc.nextPage(
                   duration: Duration(milliseconds: 300), curve: Curves.linear);
-            } else {
+            }
+            //Show toast when any CPU entity is empty
+            else {
               VxToast.show(
                 context,
                 msg: "Please Enter Burst Time",
