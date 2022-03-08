@@ -71,7 +71,7 @@ List<String> shortNames = [
   "Documentation",
   "About"
 ];
-List<String> iconNames = ["fcfs", "sjf", "rr", "srtf", "docs", "about"];
+List<String> iconNames = ["fcfs", "sjf", "rrs", "srtf", "docs", "about"];
 
 class MyApp extends StatefulWidget {
   @override
