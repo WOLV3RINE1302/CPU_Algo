@@ -3,8 +3,23 @@ import 'package:velocity_x/velocity_x.dart';
 
 import '../../../widget/help_in_responsive_widgets.dart';
 
-class FCFSPageViewFirstPage extends StatelessWidget {
-  const FCFSPageViewFirstPage({Key? key}) : super(key: key);
+class FCFSPageViewFirstPage extends StatefulWidget {
+  int pageNumber = 0;
+  FCFSPageViewFirstPage(this.pageNumber);
+
+  @override
+  State<FCFSPageViewFirstPage> createState() => _FCFSPageViewFirstPageState();
+}
+
+class _FCFSPageViewFirstPageState extends State<FCFSPageViewFirstPage> {
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(milliseconds: 300), () {
+      VxToast.show(context,
+          msg: "${widget.pageNumber}/4", textSize: forHeight(16));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(

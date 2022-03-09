@@ -12,7 +12,8 @@ import '../fcfs_page_view.dart';
 class FCFSPageViewSecondPage extends StatefulWidget {
   bool isOn;
   PageController pc;
-  FCFSPageViewSecondPage(this.isOn, this.pc);
+  int pageNumber;
+  FCFSPageViewSecondPage(this.isOn, this.pc,this.pageNumber);
 
   @override
   State<FCFSPageViewSecondPage> createState() => _FCFSPageViewSecondPageState();
@@ -22,6 +23,13 @@ double averageWaitingTime = 0;
 int totalCpuIdleTime = 0;
 
 class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(milliseconds: 300), () {
+      VxToast.show(context,
+          msg: "${widget.pageNumber}/4", textSize: forHeight(16));
+    });
+  }
   int length = 1;
   @override
   Widget build(BuildContext context) {

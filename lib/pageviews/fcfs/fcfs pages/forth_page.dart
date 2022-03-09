@@ -6,7 +6,8 @@ import '../../../widget/help_in_responsive_widgets.dart';
 import '../fcfs_page_view.dart';
 
 class FCFSPageViewForthPage extends StatefulWidget {
-  FCFSPageViewForthPage({Key? key}) : super(key: key);
+  int pageNumber = 0;
+  FCFSPageViewForthPage(this.pageNumber);
 
   @override
   State<FCFSPageViewForthPage> createState() => _FCFSPageViewForthPageState();
@@ -16,6 +17,15 @@ List endItemTime = [];
 
 class _FCFSPageViewForthPageState extends State<FCFSPageViewForthPage> {
   ScrollController sc = ScrollController();
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(milliseconds: 300), () {
+      VxToast.show(context,
+          msg: "${widget.pageNumber}/4", textSize: forHeight(16));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(

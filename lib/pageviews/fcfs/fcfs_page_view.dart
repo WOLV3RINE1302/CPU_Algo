@@ -7,7 +7,6 @@ import 'package:velocity_x/velocity_x.dart';
 import '../../main.dart';
 import '../../model/color_model.dart';
 import '../../model/fcfs_model.dart';
-import '../../pages/fcfs_table_class.dart';
 import '../../widget/help_in_responsive_widgets.dart';
 
 class FCFCPageView extends StatefulWidget {
@@ -45,13 +44,6 @@ class _FCFCPageViewState extends State<FCFCPageView> {
         {"id": "", "value": 0, "color": ColorModel().red}
       ];
     });
-    if (!isOnceNoticed) {
-      Future.delayed(Duration(milliseconds: 300), () {
-        VxToast.show(context,
-            msg: "Swipe To Go Next Page", textSize: forHeight(16));
-      });
-      isOnceNoticed = true;
-    }
   }
 
   PageController pc = PageController();
@@ -63,10 +55,10 @@ class _FCFCPageViewState extends State<FCFCPageView> {
       controller: pc,
       physics: AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       children: [
-        FCFSPageViewFirstPage(),
-        FCFSPageViewSecondPage(isOn, pc),
-        FCFSPageViewThirdPage(),
-        FCFSPageViewForthPage()
+        FCFSPageViewFirstPage(1),
+        FCFSPageViewSecondPage(isOn, pc, 2),
+        FCFSPageViewThirdPage(3),
+        FCFSPageViewForthPage(4)
       ],
     );
   }

@@ -8,13 +8,21 @@ import '../../../widget/help_in_responsive_widgets.dart';
 import '../fcfs_page_view.dart';
 
 class FCFSPageViewThirdPage extends StatefulWidget {
-  FCFSPageViewThirdPage({Key? key}) : super(key: key);
+   int pageNumber = 0;
+  FCFSPageViewThirdPage(this.pageNumber);
 
   @override
   State<FCFSPageViewThirdPage> createState() => _FCFSPageViewThirdPageState();
 }
 
 class _FCFSPageViewThirdPageState extends State<FCFSPageViewThirdPage> {
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(milliseconds: 300), () {
+      VxToast.show(context,
+          msg: "${widget.pageNumber}/4", textSize: forHeight(16));
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
