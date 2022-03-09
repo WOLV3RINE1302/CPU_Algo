@@ -281,19 +281,15 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
               // If I/O Switch is enabled
               if (isOn) {
                 isFieldsEmpty = item.cpuBurstValue != 0 || item.cpu != 0;
-
-                //Break when CPU Burst entity are 0
-                if (!isFieldsEmpty) {
-                  break;
-                }
               } //If I/O Switch is disabled
+
               else {
                 isFieldsEmpty = item.cpuBurstValue != 0;
+              }
 
-                //Break when CPU Burst entity is 0
-                if (!isFieldsEmpty) {
-                  break;
-                }
+              //Break when CPU Burst entity are 0
+              if (!isFieldsEmpty) {
+                break;
               }
             } // *Time complexity - O(n), Space complexity - O(1)
 
@@ -397,11 +393,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                       true);
                   FCFSModel.tableListValue[0] = item;
 
-                  /*
-                  If two processes have the same arrival time one being 
-                  processed for the first time and the other being processed 
-                  after I/O, then the first one will be given priority.
-                  */
+                  //CPU Idle time calcuation
                   if (FCFSModel.tableListValue[1].atValue >
                           completionTime.length &&
                       FCFSModel.tableListValue[1].isFinish &&
@@ -419,7 +411,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                   FCFSModel.tableListValue = FCFSModel.tableListValue
                       .sortedBy((a, b) => a.atValue.compareTo(b.atValue));
                   i++;
-                } // *Time complexity - O(n*k(log(n)), Space complexity - O(k*m)
+                } // *Time complexity - O(n*k*m(log(n)), Space complexity - O(k*m)
               }
               //! When I/O is OFF
               else {
@@ -444,14 +436,14 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
 
                   //?Completion time = Given CPU Burst Time
                   //?Turn Around TIme = Completion Time - Arrival Time
-                  //?Waiting Time = Turn Around Time - CPU Burst TIme
+                  //?Waiting Time = Turn Around Time - CPU Burst Time
                   completionTimeMap["P-${item.id}"] = completionTime.length;
                   turnAroundTime["P-${item.id}"] =
                       (completionTime.length - item.atValue);
                   waitingTime["P-${item.id}"] =
                       (turnAroundTime["P-${item.id}"] - item.cpuBurstValue);
                   averageWaitingTime += waitingTime["P-${item.id}"];
-                } // *Time complexity - O(n*k), Space complexity - O(k*m)
+                } // *Time complexity - O(n*k*m), Space complexity - O(k*m)
               }
               averageWaitingTime =
                   averageWaitingTime / FCFSModel.tableListValue.length;
