@@ -2,6 +2,11 @@
 
 ## CPU Algo App - Flutter
 
+## Tools Used
+
+Flutter - Framework 
+Dart - Programming Language
+
 ## Description
 
 CPU Scheduling Algorithms
