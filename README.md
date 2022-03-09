@@ -16,3 +16,18 @@ CPU Scheduling Algorithms
 1. Fork repository
 2. Clone the Fork repository in your device
 
+```terminal
+git clone https://github.com/Samarth170102/CPU_Algo_OS_Lab_Project
+```
+
+## About US
+
+Sachinkumar Lakum  
+
+Samarth Parmar 
+
+Mohmmadali Aglodiya 
+
+Bhargav Limbasia 
+
+Mahir Mehta 
