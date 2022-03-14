@@ -1,11 +1,10 @@
-import 'package:os_project/pageviews/SJF/SJF%20pages/second_page.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
-
 import '../../../model/color_model.dart';
 import '../../../model/sjf_model.dart';
 import '../../../widget/help_in_responsive_widgets.dart';
 import '../sjf_page_view.dart';
+import 'package:os_project/main.dart';
 
 class SJFPageViewThirdPage extends StatefulWidget {
   int pageNumber = 0;

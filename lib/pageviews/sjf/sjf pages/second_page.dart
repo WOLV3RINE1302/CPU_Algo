@@ -7,6 +7,7 @@ import '../../../model/color_model.dart';
 import '../../../model/sjf_model.dart';
 import '../../../pages/sjf_table_class.dart';
 import '../../../widget/help_in_responsive_widgets.dart';
+import '../../fcfs/fcfs pages/second_page.dart';
 import '../sjf_page_view.dart';
 
 class SJFPageViewSecondPage extends StatefulWidget {
@@ -19,8 +20,7 @@ class SJFPageViewSecondPage extends StatefulWidget {
   State<SJFPageViewSecondPage> createState() => _SJFPageViewSecondPageState();
 }
 
-double averageWaitingTime = 0;
-int totalCpuIdleTime = 0;
+
 
 class _SJFPageViewSecondPageState extends State<SJFPageViewSecondPage> {
   void initState() {
@@ -283,7 +283,7 @@ class _SJFPageViewSecondPageState extends State<SJFPageViewSecondPage> {
         GestureDetector(
           onTap: () {
             for (var i = 0; i < SJFModel.tableListValue.length; i++) {
-              //Passsing SJF Model to item variable
+              //Passing SJF Model to item variable
               SJFModel item = SJFModel.tableListValue[i];
 
               //! Resets to old value of table list items
@@ -342,6 +342,8 @@ class _SJFPageViewSecondPageState extends State<SJFPageViewSecondPage> {
 
               SJFModel.tableListValue = SJFModel.tableListValue
                   .sortedBy((a, b) => a.atValue.compareTo(b.atValue));
+              SJFModel.tableListValue = SJFModel.tableListValue
+                  .sortedBy((a, b) => a.cpuBurstValue.compareTo(b.cpuBurstValue));
               // *Time complexity - O(n*log(n)), Space complexity - O(1)
 
               if (SJFModel.tableListValue[0].atValue > 0) {
@@ -418,6 +420,8 @@ class _SJFPageViewSecondPageState extends State<SJFPageViewSecondPage> {
                   }
                   SJFModel.tableListValue = SJFModel.tableListValue
                       .sortedBy((a, b) => a.atValue.compareTo(b.atValue));
+                  SJFModel.tableListValue = SJFModel.tableListValue
+                      .sortedBy((a, b) => a.cpuBurstValue.compareTo(b.cpuBurstValue));
                   i++;
                 } // *Time complexity - O(n*k*m(log(n)), Space complexity - O(k*m)
               }

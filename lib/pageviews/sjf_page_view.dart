@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:os_project/pageviews/sjf/sjf%20pages/third_page.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../main.dart';
 import '../model/color_model.dart';
 import '../model/SJF_model.dart';
 import '../pages/sjf_table_class.dart';
 import '../widget/help_in_responsive_widgets.dart';
-import 'fcfs/fcfs_page_view.dart';
+import 'SJF/SJF pages/forth_page.dart';
+import 'SJF/SJF pages/second_page.dart';
+import 'SJF/sjf pages/first_page.dart';
+import 'sjf/sjf_page_view.dart';
 
 class SJFPageView extends StatefulWidget {
   SJFPageView({Key? key}) : super(key: key);
@@ -15,238 +19,58 @@ class SJFPageView extends StatefulWidget {
 }
 
 class _SJFPageViewState extends State<SJFPageView> {
-  int length = 1;
+  @override
   void initState() {
     super.initState();
     setState(() {
       time = 0;
       runPhase = 0;
       isNextPageVisible = false;
+      SJFModel.tableListValue = [SJFModel(0, 0, 0, 0, 0, 0, 0, false)];
       showInGraphList = [
         {"id": "", "value": 0, "color": ColorModel().red}
       ];
     });
-    if (!isOnceNoticed) {
-      Future.delayed(Duration(milliseconds: 300), () {
-        VxToast.show(context,
-            msg: "Swipe To Go Next Page", textSize: forHeight(16));
-      });
-      isOnceNoticed = true;
-    }
   }
 
+  PageController pc = PageController();
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [SetheStateMutation]);
     bool isOn = SJFModel.ioSwitch;
     return PageView(
+      controller: pc,
       physics: AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            sizedBoxForHeight(10),
-            Text(
-              "● Shortest job first (SJF) is also known as shortest job next.\n\n"
-              "● Shortest Job First is a non-pre-emptive algorithm.\n\n"
-              "● It selects the waiting process with the smallest execution time to execute next.",
-              style: TextStyle(color: Vx.white, fontSize: forHeight(19)),
-            )
-          ],
-        ),
-        ListView(
-          physics:
-              AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
-          children: [
-            sizedBoxForHeight(30),
-            Row(
-              children: [
-                Text(
-                  "I/O Burst",
-                  style: TextStyle(
-                      color: Vx.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: forHeight(16)),
-                ).pOnly(left: forWidth(10)),
-                Switch(
-                  value: SJFModel.ioSwitch,
-                  activeColor: ColorModel().blue,
-                  inactiveTrackColor: Color.fromARGB(255, 75, 75, 75),
-                  onChanged: (val) {
-                    setState(() {
-                      SJFModel.ioSwitch = val;
-                    });
-                  },
-                ).objectBottomLeft(),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  height: forHeight(57),
-                  width: !isOn ? width * 30 : width * 18,
-                  child: Text(
-                    "P-ID",
-                    style: TextStyle(
-                        color: Vx.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: forHeight(16)),
-                  ).centered(),
-                  decoration: BoxDecoration(
-                    color: ColorModel().blue,
-                    border: Border(
-                        right: BorderSide(
-                      width: forHeight(2),
-                      color: Vx.black,
-                    )),
-                  ),
-                ),
-                Container(
-                  height: forHeight(57),
-                  width: !isOn ? width * 30 : width * 18,
-                  child: Text(
-                    "AT",
-                    style: TextStyle(
-                        color: Vx.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: forHeight(16)),
-                  ).centered(),
-                  color: ColorModel().blue,
-                ),
-                Container(
-                  height: forHeight(57),
-                  width: !isOn ? width * 30 : width * 18,
-                  child: Text(
-                    "CPU\nBurst",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Vx.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: forHeight(16)),
-                  ).centered(),
-                  decoration: BoxDecoration(
-                    color: ColorModel().blue,
-                    border: Border(
-                        left: BorderSide(
-                      width: forHeight(2),
-                      color: Vx.black,
-                    )),
-                  ),
-                ),
-                Visibility(
-                  visible: isOn,
-                  child: Container(
-                    height: forHeight(57),
-                    width: width * 18,
-                    child: Text(
-                      "I/O",
-                      style: TextStyle(
-                          color: Vx.black,
-                          fontWeight: FontWeight.w600,
-                          fontSize: forHeight(16)),
-                    ).centered(),
-                    decoration: BoxDecoration(
-                      color: ColorModel().blue,
-                      border: Border(
-                          left: BorderSide(
-                        width: forHeight(2),
-                        color: Vx.black,
-                      )),
-                    ),
-                  ),
-                ),
-                Visibility(
-                  visible: isOn,
-                  child: Container(
-                    height: forHeight(57),
-                    width: width * 18,
-                    child: Text(
-                      "CPU",
-                      style: TextStyle(
-                          color: Vx.black,
-                          fontWeight: FontWeight.w600,
-                          fontSize: forHeight(16)),
-                    ).centered(),
-                    decoration: BoxDecoration(
-                      color: ColorModel().blue,
-                      border: Border(
-                          left: BorderSide(
-                        width: forHeight(2),
-                        color: Vx.black,
-                      )),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            ListView.builder(
-              itemCount: length,
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemBuilder: (BuildContext context, int index) {
-                return SJFTableClass(index, isOn);
-              },
-            ),
-            sizedBoxForHeight(30),
-            Row(
-              mainAxisAlignment: length > 1
-                  ? MainAxisAlignment.spaceAround
-                  : MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    SJFModel.tableListValue.add(SJFModel(0, 0, 0, 0));
-                    setState(() {
-                      length++;
-                    });
-                  },
-                  child: Container(
-                    height: forHeight(48),
-                    width: forHeight(115),
-                    child: Text(
-                      "Add",
-                      style: TextStyle(
-                          color: Vx.black,
-                          fontWeight: FontWeight.w600,
-                          fontSize: forHeight(16)),
-                    ).centered(),
-                    decoration: BoxDecoration(
-                      color: ColorModel().blue,
-                      borderRadius: BorderRadius.circular(forHeight(4)),
-                    ),
-                  ),
-                ),
-                Visibility(
-                  visible: length > 1,
-                  child: GestureDetector(
-                    onTap: () {
-                      SJFModel.tableListValue.removeLast();
-                      setState(() {
-                        length--;
-                      });
-                    },
-                    child: Container(
-                      height: forHeight(48),
-                      width: forHeight(115),
-                      child: Text(
-                        "Remove",
-                        style: TextStyle(
-                            color: Vx.black,
-                            fontWeight: FontWeight.w600,
-                            fontSize: forHeight(16)),
-                      ).centered(),
-                      decoration: BoxDecoration(
-                        color: ColorModel().blue,
-                        borderRadius: BorderRadius.circular(forHeight(4)),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        )
+        SJFPageViewFirstPage(1),
+        SJFPageViewSecondPage(isOn, pc, 2),
+        SJFPageViewThirdPage(3),
+        SJFPageViewForthPage(4)
       ],
     );
   }
+}
+
+Row rowForValueDisplay(String type, String val) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Text(
+        type,
+        style: TextStyle(
+          color: Vx.black,
+          fontSize: forHeight(20),
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+      Text(
+        val,
+        style: TextStyle(
+          color: Vx.black,
+          fontSize: forHeight(20),
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+    ],
+  );
 }

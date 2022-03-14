@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:os_project/model/sjf_model.dart';
+import 'package:os_project/pageviews/SJF/sjf%20pages/first_page.dart';
 import 'package:os_project/pageviews/sjf/sjf%20pages/third_page.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../main.dart';
 import '../../model/color_model.dart';
-import '../../model/fcfs_model.dart';
 import '../../widget/help_in_responsive_widgets.dart';
 import 'SJF pages/forth_page.dart';
 import 'SJF pages/second_page.dart';
-import 'sjf pages/first_page.dart';
+
+
 
 class SJFPageView extends StatefulWidget {
   SJFPageView({Key? key}) : super(key: key);
@@ -39,7 +41,7 @@ class _SJFPageViewState extends State<SJFPageView> {
       time = 0;
       runPhase = 0;
       isNextPageVisible = false;
-      FCFSModel.tableListValue = [FCFSModel(0, 0, 0, 0, 0, 0, 0, false)];
+      SJFModel.tableListValue = [SJFModel(0, 0, 0, 0, 0, 0, 0, false)];
       showInGraphList = [
         {"id": "", "value": 0, "color": ColorModel().blue}
       ];
@@ -50,7 +52,7 @@ class _SJFPageViewState extends State<SJFPageView> {
   @override
   Widget build(BuildContext context) {
     VxState.watch(context, on: [SetheStateMutation]);
-    bool isOn = FCFSModel.ioSwitch;
+    bool isOn = SJFModel.ioSwitch;
     return PageView(
       controller: pc,
       physics: AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),

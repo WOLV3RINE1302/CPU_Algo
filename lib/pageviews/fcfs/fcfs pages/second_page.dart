@@ -19,9 +19,6 @@ class FCFSPageViewSecondPage extends StatefulWidget {
     State<FCFSPageViewSecondPage> createState() => _FCFSPageViewSecondPageState();
 }
 
-double averageWaitingTime = 0;
-int totalCpuIdleTime = 0;
-
 class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
   void initState() {
     super.initState();

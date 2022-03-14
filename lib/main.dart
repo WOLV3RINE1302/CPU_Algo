@@ -31,6 +31,9 @@ class SetheStateMutation extends VxMutation<MyStore> {
 MyStore store = VxState.store;
 double height = 0;
 double width = 0;
+double averageWaitingTime = 0;
+int totalCpuIdleTime = 0;
+
 List<Color> colors = [
   ColorModel().red,
   ColorModel().blue,

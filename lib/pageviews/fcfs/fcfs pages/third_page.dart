@@ -1,7 +1,7 @@
 import 'package:os_project/pageviews/fcfs/fcfs%20pages/second_page.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
-
+import '../../../main.dart';
 import '../../../model/color_model.dart';
 import '../../../model/fcfs_model.dart';
 import '../../../widget/help_in_responsive_widgets.dart';
