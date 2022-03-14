@@ -74,8 +74,15 @@ class _SJFTableClassState extends State<SJFTableClass> {
               } catch (e) {
                 atValue = 0;
               }
-              SJFModel.tableListValue[widget.index] =
-                  SJFModel(atValue, cpuBurstValue, ioTime, cpu);
+              SJFModel.tableListValue[widget.index] = SJFModel(
+                  widget.index,
+                  atValue,
+                  atValue,
+                  cpuBurstValue,
+                  cpuBurstValue,
+                  ioTime,
+                  cpu,
+                  false);
             },
           ),
           decoration: BoxDecoration(
@@ -110,8 +117,15 @@ class _SJFTableClassState extends State<SJFTableClass> {
               } catch (e) {
                 cpuBurstValue = 0;
               }
-              SJFModel.tableListValue[widget.index] =
-                  SJFModel(atValue, cpuBurstValue, ioTime, cpu);
+              SJFModel.tableListValue[widget.index] = SJFModel(
+                  widget.index,
+                  atValue,
+                  atValue,
+                  cpuBurstValue,
+                  cpuBurstValue,
+                  ioTime,
+                  cpu,
+                  false);
             },
           ),
           decoration: BoxDecoration(
@@ -157,8 +171,15 @@ class _SJFTableClassState extends State<SJFTableClass> {
                 } catch (e) {
                   ioTime = 0;
                 }
-                SJFModel.tableListValue[widget.index] =
-                    SJFModel(atValue, cpuBurstValue, ioTime, cpu);
+                SJFModel.tableListValue[widget.index] = SJFModel(
+                    widget.index,
+                    atValue,
+                    atValue,
+                    cpuBurstValue,
+                    cpuBurstValue,
+                    ioTime,
+                    cpu,
+                    false);
               },
             ),
             decoration: BoxDecoration(
@@ -200,8 +221,15 @@ class _SJFTableClassState extends State<SJFTableClass> {
                 } catch (e) {
                   cpu = 0;
                 }
-                SJFModel.tableListValue[widget.index] =
-                    SJFModel(atValue, cpuBurstValue, ioTime, cpu);
+                SJFModel.tableListValue[widget.index] = SJFModel(
+                    widget.index,
+                    atValue,
+                    atValue,
+                    cpuBurstValue,
+                    cpuBurstValue,
+                    ioTime,
+                    cpu,
+                    false);
               },
             ),
             decoration: BoxDecoration(

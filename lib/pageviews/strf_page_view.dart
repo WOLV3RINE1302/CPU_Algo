@@ -199,10 +199,10 @@ class _SRTFPageViewState extends State<SRTFPageView> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    SJFModel.tableListValue.add(SJFModel(0, 0, 0, 0));
-                    setState(() {
-                      length++;
-                    });
+                    // SJFModel.tableListValue.add(SJFModel(0, 0, 0, 0));
+                    // setState(() {
+                    //   length++;
+                    // });
                   },
                   child: Container(
                     height: forHeight(48),

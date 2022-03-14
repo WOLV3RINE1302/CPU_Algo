@@ -1,28 +1,28 @@
-import 'package:os_project/pageviews/fcfs/fcfs%20pages/forth_page.dart';
+import 'package:os_project/pageviews/SJF/SJF%20pages/forth_page.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
 
 import '../../../main.dart';
 import '../../../model/color_model.dart';
-import '../../../model/fcfs_model.dart';
-import '../../../pages/fcfs_table_class.dart';
+import '../../../model/sjf_model.dart';
+import '../../../pages/sjf_table_class.dart';
 import '../../../widget/help_in_responsive_widgets.dart';
-import '../fcfs_page_view.dart';
+import '../sjf_page_view.dart';
 
-class FCFSPageViewSecondPage extends StatefulWidget {
+class SJFPageViewSecondPage extends StatefulWidget {
   bool isOn;
   PageController pc;
   int pageNumber;
-  FCFSPageViewSecondPage(this.isOn, this.pc, this.pageNumber);
+  SJFPageViewSecondPage(this.isOn, this.pc, this.pageNumber);
 
   @override
-    State<FCFSPageViewSecondPage> createState() => _FCFSPageViewSecondPageState();
+  State<SJFPageViewSecondPage> createState() => _SJFPageViewSecondPageState();
 }
 
 double averageWaitingTime = 0;
 int totalCpuIdleTime = 0;
 
-class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
+class _SJFPageViewSecondPageState extends State<SJFPageViewSecondPage> {
   void initState() {
     super.initState();
     Future.delayed(Duration(milliseconds: 300), () {
@@ -49,12 +49,12 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                   fontSize: forHeight(16)),
             ).pOnly(left: forWidth(10)),
             Switch(
-              value: FCFSModel.ioSwitch,
-              activeColor: ColorModel().red,
+              value: SJFModel.ioSwitch,
+              activeColor: ColorModel().blue,
               inactiveTrackColor: Color.fromARGB(255, 75, 75, 75),
               onChanged: (val) {
                 setState(() {
-                  FCFSModel.ioSwitch = val;
+                  SJFModel.ioSwitch = val;
                   SetheStateMutation();
                 });
               },
@@ -66,7 +66,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
           children: [
             GestureDetector(
               onTap: () => ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                backgroundColor: ColorModel().red,
+                backgroundColor: ColorModel().blue,
                 duration: Duration(milliseconds: 1600),
                 content: Text(
                   "Process-ID",
@@ -84,7 +84,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                       fontSize: forHeight(16)),
                 ).centered(),
                 decoration: BoxDecoration(
-                  color: ColorModel().red,
+                  color: ColorModel().blue,
                   border: Border(
                       right: BorderSide(
                     width: forHeight(2),
@@ -95,7 +95,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
             ),
             GestureDetector(
               onTap: () => ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                backgroundColor: ColorModel().red,
+                backgroundColor: ColorModel().blue,
                 duration: Duration(milliseconds: 1600),
                 content: Text(
                   "Arrival Time",
@@ -112,12 +112,12 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                       fontWeight: FontWeight.w600,
                       fontSize: forHeight(16)),
                 ).centered(),
-                color: ColorModel().red,
+                color: ColorModel().blue,
               ),
             ),
             GestureDetector(
               onTap: () => ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                backgroundColor: ColorModel().red,
+                backgroundColor: ColorModel().blue,
                 duration: Duration(milliseconds: 1600),
                 content: Text(
                   "CPU Burst Time",
@@ -136,7 +136,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                       fontSize: forHeight(16)),
                 ).centered(),
                 decoration: BoxDecoration(
-                  color: ColorModel().red,
+                  color: ColorModel().blue,
                   border: Border(
                       left: BorderSide(
                     width: forHeight(2),
@@ -150,7 +150,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
               child: GestureDetector(
                 onTap: () =>
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  backgroundColor: ColorModel().red,
+                  backgroundColor: ColorModel().blue,
                   duration: Duration(milliseconds: 1600),
                   content: Text(
                     "Input/Output Time",
@@ -168,7 +168,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                         fontSize: forHeight(16)),
                   ).centered(),
                   decoration: BoxDecoration(
-                    color: ColorModel().red,
+                    color: ColorModel().blue,
                     border: Border(
                         left: BorderSide(
                       width: forHeight(2),
@@ -183,7 +183,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
               child: GestureDetector(
                 onTap: () =>
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  backgroundColor: ColorModel().red,
+                  backgroundColor: ColorModel().blue,
                   duration: Duration(milliseconds: 1600),
                   content: Text(
                     "CPU Time",
@@ -201,7 +201,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                         fontSize: forHeight(16)),
                   ).centered(),
                   decoration: BoxDecoration(
-                    color: ColorModel().red,
+                    color: ColorModel().blue,
                     border: Border(
                         left: BorderSide(
                       width: forHeight(2),
@@ -218,7 +218,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
-            return FCFSTableClass(index, isOn);
+            return SJFTableClass(index, isOn);
           },
         ),
         sizedBoxForHeight(30),
@@ -229,8 +229,8 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
           children: [
             GestureDetector(
               onTap: () {
-                FCFSModel.tableListValue
-                    .add(FCFSModel(0, 0, 0, 0, 0, 0, 0, false));
+                SJFModel.tableListValue
+                    .add(SJFModel(0, 0, 0, 0, 0, 0, 0, false));
                 setState(() {
                   length++;
                 });
@@ -246,7 +246,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                       fontSize: forHeight(16)),
                 ).centered(),
                 decoration: BoxDecoration(
-                  color: ColorModel().red,
+                  color: ColorModel().blue,
                   borderRadius: BorderRadius.circular(forHeight(4)),
                 ),
               ),
@@ -255,7 +255,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
               visible: length > 1,
               child: GestureDetector(
                 onTap: () {
-                  FCFSModel.tableListValue.removeLast();
+                  SJFModel.tableListValue.removeLast();
                   setState(() {
                     length--;
                   });
@@ -271,7 +271,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                         fontSize: forHeight(16)),
                   ).centered(),
                   decoration: BoxDecoration(
-                    color: ColorModel().red,
+                    color: ColorModel().blue,
                     borderRadius: BorderRadius.circular(forHeight(4)),
                   ),
                 ),
@@ -282,12 +282,12 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
         sizedBoxForHeight(30),
         GestureDetector(
           onTap: () {
-            for (var i = 0; i < FCFSModel.tableListValue.length; i++) {
-              //Passsing FCFS Model to item variable
-              FCFSModel item = FCFSModel.tableListValue[i];
+            for (var i = 0; i < SJFModel.tableListValue.length; i++) {
+              //Passsing SJF Model to item variable
+              SJFModel item = SJFModel.tableListValue[i];
 
               //! Resets to old value of table list items
-              FCFSModel.tableListValue[i] = FCFSModel(
+              SJFModel.tableListValue[i] = SJFModel(
                   item.id,
                   item.oldAtValue,
                   item.oldAtValue,
@@ -300,8 +300,8 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
             bool isFieldsEmpty =
                 false; //To make sure CPU Burst Time entities are not zero
 
-            //! Iterating items from FCFS Model tableListValue
-            for (var item in FCFSModel.tableListValue) {
+            //! Iterating items from SJF Model tableListValue
+            for (var item in SJFModel.tableListValue) {
               // If I/O Switch is enabled
               if (isOn) {
                 isFieldsEmpty = item.cpuBurstValue != 0 || item.cpu != 0;
@@ -337,22 +337,22 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
               totalCpuIdleTime = 0; // Total Idle time of CPU
               averageWaitingTime = 0; //Average Waiting time of processes
               showInGraphList = [
-                {"id": "", "value": 0, "color": ColorModel().red}
+                {"id": "", "value": 0, "color": ColorModel().blue}
               ]; //List for process animation
 
-              FCFSModel.tableListValue = FCFSModel.tableListValue
+              SJFModel.tableListValue = SJFModel.tableListValue
                   .sortedBy((a, b) => a.atValue.compareTo(b.atValue));
               // *Time complexity - O(n*log(n)), Space complexity - O(1)
 
-              if (FCFSModel.tableListValue[0].atValue > 0) {
-                for (var i = 0; i < FCFSModel.tableListValue[0].atValue; i++) {
+              if (SJFModel.tableListValue[0].atValue > 0) {
+                for (var i = 0; i < SJFModel.tableListValue[0].atValue; i++) {
                   completionTime.add("CPU Idle");
                 } // *Time complexity - O(n), Space complexity - O(n)
                 totalCpuIdleTime = completionTime.length;
               }
               if (isOn) {
-                for (var i = 0; i < FCFSModel.tableListValue.length * 2;) {
-                  FCFSModel item = FCFSModel.tableListValue[0];
+                for (var i = 0; i < SJFModel.tableListValue.length * 2;) {
+                  SJFModel item = SJFModel.tableListValue[0];
 
                   // Adds entities according to process IDs
                   completionTime.addAll(List.generate(
@@ -390,7 +390,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                   Reinitialize item by replacing new arrival time value
                   and CPU Burst value 
                   */
-                  item = FCFSModel(
+                  item = SJFModel(
                       item.id,
                       at.round(),
                       item.oldAtValue,
@@ -399,15 +399,15 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                       item.ioTime,
                       item.cpu,
                       true);
-                  FCFSModel.tableListValue[0] = item;
+                  SJFModel.tableListValue[0] = item;
 
                   //CPU Idle time calcuation
-                  if (FCFSModel.tableListValue[1].atValue >
+                  if (SJFModel.tableListValue[1].atValue >
                           completionTime.length &&
-                      FCFSModel.tableListValue[1].isFinish &&
-                      i != FCFSModel.tableListValue.length * 2 - 1) {
+                      SJFModel.tableListValue[1].isFinish &&
+                      i != SJFModel.tableListValue.length * 2 - 1) {
                     List cpuIdle = List.generate(
-                        FCFSModel.tableListValue[1].atValue -
+                        SJFModel.tableListValue[1].atValue -
                             completionTime.length,
                         (index) => "CPU Idle");
                     completionTime.addAll(cpuIdle);
@@ -416,15 +416,15 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
 
                     totalCpuIdleTime += cpuIdle.length;
                   }
-                  FCFSModel.tableListValue = FCFSModel.tableListValue
+                  SJFModel.tableListValue = SJFModel.tableListValue
                       .sortedBy((a, b) => a.atValue.compareTo(b.atValue));
                   i++;
                 } // *Time complexity - O(n*k*m(log(n)), Space complexity - O(k*m)
               }
               //! When I/O is OFF
               else {
-                for (var i = 0; i < FCFSModel.tableListValue.length; i++) {
-                  FCFSModel item = FCFSModel.tableListValue[i];
+                for (var i = 0; i < SJFModel.tableListValue.length; i++) {
+                  SJFModel item = SJFModel.tableListValue[i];
 
                   if (item.atValue > completionTime.length && i != 0) {
                     List cpuIdle = List.generate(
@@ -454,15 +454,15 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                 } // *Time complexity - O(n*k*m), Space complexity - O(k*m)
               }
               averageWaitingTime =
-                  averageWaitingTime / FCFSModel.tableListValue.length;
+                  averageWaitingTime / SJFModel.tableListValue.length;
               for (var i = 0; i < completionTime.length; i++) {
                 if (i == 0 || completionTime[i] != completionTime[i - 1]) {
                   showInGraphList
-                      .add({"id": "", "value": 0, "color": ColorModel().red});
+                      .add({"id": "", "value": 0, "color": ColorModel().blue});
                 }
               } // *Time complexity - O(n), Space complexity - O(n)
 
-              FCFSModel.tableListValue = FCFSModel.tableListValue
+              SJFModel.tableListValue = SJFModel.tableListValue
                   .sortedBy((a, b) => a.id.compareTo(b.id));
               // *Time complexity - O(n*log(n)), Space complexity - O(1)
 
@@ -492,7 +492,7 @@ class _FCFSPageViewSecondPageState extends State<FCFSPageViewSecondPage> {
                   fontSize: forHeight(16)),
             ).centered(),
             decoration: BoxDecoration(
-              color: ColorModel().red,
+              color: ColorModel().blue,
               borderRadius: BorderRadius.circular(forHeight(4)),
             ),
           ),
