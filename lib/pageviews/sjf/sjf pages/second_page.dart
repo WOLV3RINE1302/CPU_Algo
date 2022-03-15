@@ -1,4 +1,4 @@
-import 'package:os_project/model/fcfs_model.dart';
+
 import 'package:os_project/pageviews/SJF/SJF%20pages/forth_page.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,6 @@ import '../../../model/color_model.dart';
 import '../../../model/sjf_model.dart';
 import '../../../pages/sjf_table_class.dart';
 import '../../../widget/help_in_responsive_widgets.dart';
-import '../../fcfs/fcfs pages/second_page.dart';
 import '../sjf_page_view.dart';
 
 class SJFPageViewSecondPage extends StatefulWidget {
