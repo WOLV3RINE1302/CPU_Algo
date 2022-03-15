@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:os_project/model/sjf_model.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +55,7 @@ class _SJFTableClassState extends State<SJFTableClass> {
           height: forHeight(50),
           width: isOn ? width * 30 : width * 18,
           child: TextFormField(
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             keyboardType: 
             TextInputType.phone,
             cursorColor: ColorModel().blue,
@@ -99,6 +101,7 @@ class _SJFTableClassState extends State<SJFTableClass> {
           height: forHeight(50),
           width: isOn ? width * 30 : width * 18,
           child: TextFormField(
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             keyboardType: 
             TextInputType.number,
             cursorColor: ColorModel().blue,
@@ -155,6 +158,7 @@ class _SJFTableClassState extends State<SJFTableClass> {
             height: forHeight(50),
             width: width * 18,
             child: TextFormField(
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: 
               TextInputType.phone,
               cursorColor: ColorModel().blue,
@@ -207,6 +211,7 @@ class _SJFTableClassState extends State<SJFTableClass> {
             height: forHeight(50),
             width: width * 18,
             child: TextFormField(
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: 
               TextInputType.phone,
               cursorColor: ColorModel().blue,

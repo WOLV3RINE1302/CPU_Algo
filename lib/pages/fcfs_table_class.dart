@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:os_project/model/fcfs_model.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +55,7 @@ class _FCFSTableClassState extends State<FCFSTableClass> {
           height: forHeight(50),
           width: isOn ? width * 30 : width * 18,
           child: TextFormField(
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           keyboardType: 
               TextInputType.phone,
             cursorColor: ColorModel().red,
@@ -99,6 +101,7 @@ class _FCFSTableClassState extends State<FCFSTableClass> {
           height: forHeight(50),
           width: isOn ? width * 30 : width * 18,
           child: TextFormField(
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           keyboardType: 
               TextInputType.phone,
             cursorColor: ColorModel().red,
@@ -155,6 +158,7 @@ class _FCFSTableClassState extends State<FCFSTableClass> {
             height: forHeight(50),
             width: width * 18,
             child: TextFormField(
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             keyboardType: 
               TextInputType.phone,
               cursorColor: ColorModel().red,
@@ -207,6 +211,7 @@ class _FCFSTableClassState extends State<FCFSTableClass> {
             height: forHeight(50),
             width: width * 18,
             child: TextFormField(
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             keyboardType: 
               TextInputType.phone,
               cursorColor: ColorModel().red,

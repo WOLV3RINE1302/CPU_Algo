@@ -4,9 +4,7 @@ import 'package:velocity_x/velocity_x.dart';
 
 import '../main.dart';
 import '../model/SJF_model.dart';
-import '../model/color_model.dart';
 import '../widget/help_in_responsive_widgets.dart';
-import 'fcfs/fcfs_page_view.dart';
 
 class Documentation extends StatefulWidget {
   Documentation({Key? key}) : super(key: key);
