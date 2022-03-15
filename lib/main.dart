@@ -53,7 +53,7 @@ List<Widget> pagesViews = [
 
 List<String> documentsLinks = [
   "https://docs.google.com/document/d/14lZ_Qfb2v98vzGaxnv7R9zZBy5uG128N_usf_J7kzPE/edit",
-  "https://docs.google.com/document/d/14lZ_Qfb2v98vzGaxnv7R9zZBy5uG128N_usf_J7kzPE/edit",
+  "https://docs.google.com/document/d/1qeEgOSzKKBowW0jKWAPZ2qrE9gnQ6GLRG_BohP7LRJU/edit",
   "https://docs.google.com/document/d/14lZ_Qfb2v98vzGaxnv7R9zZBy5uG128N_usf_J7kzPE/edit",
   "https://docs.google.com/document/d/14lZ_Qfb2v98vzGaxnv7R9zZBy5uG128N_usf_J7kzPE/edit",
 ];
