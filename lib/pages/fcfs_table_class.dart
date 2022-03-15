@@ -54,6 +54,8 @@ class _FCFSTableClassState extends State<FCFSTableClass> {
           height: forHeight(50),
           width: isOn ? width * 30 : width * 18,
           child: TextFormField(
+          keyboardType: 
+              TextInputType.phone,
             cursorColor: ColorModel().red,
             style: TextStyle(
                 color: Vx.white,
@@ -97,6 +99,8 @@ class _FCFSTableClassState extends State<FCFSTableClass> {
           height: forHeight(50),
           width: isOn ? width * 30 : width * 18,
           child: TextFormField(
+          keyboardType: 
+              TextInputType.phone,
             cursorColor: ColorModel().red,
             style: TextStyle(
                 color: Vx.white,
@@ -151,6 +155,8 @@ class _FCFSTableClassState extends State<FCFSTableClass> {
             height: forHeight(50),
             width: width * 18,
             child: TextFormField(
+            keyboardType: 
+              TextInputType.phone,
               cursorColor: ColorModel().red,
               style: TextStyle(
                   color: Vx.white,
@@ -201,6 +207,8 @@ class _FCFSTableClassState extends State<FCFSTableClass> {
             height: forHeight(50),
             width: width * 18,
             child: TextFormField(
+            keyboardType: 
+              TextInputType.phone,
               cursorColor: ColorModel().red,
               style: TextStyle(
                   color: Vx.white,
