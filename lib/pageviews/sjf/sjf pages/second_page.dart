@@ -1,3 +1,4 @@
+import 'package:os_project/model/fcfs_model.dart';
 import 'package:os_project/pageviews/SJF/SJF%20pages/forth_page.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +20,6 @@ class SJFPageViewSecondPage extends StatefulWidget {
   @override
   State<SJFPageViewSecondPage> createState() => _SJFPageViewSecondPageState();
 }
-
-
 
 class _SJFPageViewSecondPageState extends State<SJFPageViewSecondPage> {
   void initState() {
@@ -342,8 +341,35 @@ class _SJFPageViewSecondPageState extends State<SJFPageViewSecondPage> {
 
               SJFModel.tableListValue = SJFModel.tableListValue
                   .sortedBy((a, b) => a.atValue.compareTo(b.atValue));
-              SJFModel.tableListValue = SJFModel.tableListValue
-                  .sortedBy((a, b) => a.cpuBurstValue.compareTo(b.cpuBurstValue));
+
+              List temp = [];
+              int x = 0;
+              /*
+              Creating a temporary list and sorting all processes having same
+              arrival time on basis of their CPU Burst Time
+               */
+              for (var i = 0; i < SJFModel.tableListValue.length; i++) {
+                SJFModel item = SJFModel.tableListValue[i];
+                if (i == 0) {
+                  temp.add([item]);
+                } else {
+                  if (item.atValue == SJFModel.tableListValue[i - 1].atValue) {
+                    temp[x].add(item);
+                  } else {
+                    x++;
+                    temp.add([item]);
+                  }
+                }
+              }// *Time complexity - O(n), Space complexity - O(n)
+              for (var i = 0; i < temp.length; i++) {
+                List<SJFModel> temp2 = temp[i];
+                temp[i] = temp2.sortedBy(
+                    (a, b) => a.cpuBurstValue.compareTo(b.cpuBurstValue));
+              }
+              SJFModel.tableListValue.clear();
+              for (var item in temp) {
+                SJFModel.tableListValue.addAll(item);
+              }
               // *Time complexity - O(n*log(n)), Space complexity - O(1)
 
               if (SJFModel.tableListValue[0].atValue > 0) {
@@ -402,7 +428,10 @@ class _SJFPageViewSecondPageState extends State<SJFPageViewSecondPage> {
                       item.cpu,
                       true);
                   SJFModel.tableListValue[0] = item;
-
+                  // print("--------");
+                  // for (var item in SJFModel.tableListValue) {
+                  //   print("${item.id} ${item.cpuBurstValue}");
+                  // }
                   //CPU Idle time calcuation
                   if (SJFModel.tableListValue[1].atValue >
                           completionTime.length &&
@@ -420,8 +449,7 @@ class _SJFPageViewSecondPageState extends State<SJFPageViewSecondPage> {
                   }
                   SJFModel.tableListValue = SJFModel.tableListValue
                       .sortedBy((a, b) => a.atValue.compareTo(b.atValue));
-                  SJFModel.tableListValue = SJFModel.tableListValue
-                      .sortedBy((a, b) => a.cpuBurstValue.compareTo(b.cpuBurstValue));
+
                   i++;
                 } // *Time complexity - O(n*k*m(log(n)), Space complexity - O(k*m)
               }
