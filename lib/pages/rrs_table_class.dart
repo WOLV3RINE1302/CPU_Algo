@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:os_project/model/rrs_model.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +55,8 @@ class _RRSTableClassState extends State<RRSTableClass> {
           height: forHeight(50),
           width: isOn ? width * 30 : width * 18,
           child: TextFormField(
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            keyboardType: TextInputType.phone,
             cursorColor: ColorModel().green,
             style: TextStyle(
                 color: Vx.white,
@@ -74,8 +77,15 @@ class _RRSTableClassState extends State<RRSTableClass> {
               } catch (e) {
                 atValue = 0;
               }
-              RRSModel.tableListValue[widget.index] =
-                  RRSModel(atValue, cpuBurstValue, ioTime, cpu);
+              RRSModel.tableListValue[widget.index] = RRSModel(
+                  widget.index,
+                  atValue,
+                  atValue,
+                  cpuBurstValue,
+                  cpuBurstValue,
+                  ioTime,
+                  cpu,
+                  false);
             },
           ),
           decoration: BoxDecoration(
@@ -90,6 +100,8 @@ class _RRSTableClassState extends State<RRSTableClass> {
           height: forHeight(50),
           width: isOn ? width * 30 : width * 18,
           child: TextFormField(
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            keyboardType: TextInputType.phone,
             cursorColor: ColorModel().green,
             style: TextStyle(
                 color: Vx.white,
@@ -110,8 +122,15 @@ class _RRSTableClassState extends State<RRSTableClass> {
               } catch (e) {
                 cpuBurstValue = 0;
               }
-              RRSModel.tableListValue[widget.index] =
-                  RRSModel(atValue, cpuBurstValue, ioTime, cpu);
+              RRSModel.tableListValue[widget.index] = RRSModel(
+                  widget.index,
+                  atValue,
+                  atValue,
+                  cpuBurstValue,
+                  cpuBurstValue,
+                  ioTime,
+                  cpu,
+                  false);
             },
           ),
           decoration: BoxDecoration(
@@ -137,6 +156,8 @@ class _RRSTableClassState extends State<RRSTableClass> {
             height: forHeight(50),
             width: width * 18,
             child: TextFormField(
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: TextInputType.phone,
               cursorColor: ColorModel().green,
               style: TextStyle(
                   color: Vx.white,
@@ -157,8 +178,15 @@ class _RRSTableClassState extends State<RRSTableClass> {
                 } catch (e) {
                   ioTime = 0;
                 }
-                RRSModel.tableListValue[widget.index] =
-                    RRSModel(atValue, cpuBurstValue, ioTime, cpu);
+                RRSModel.tableListValue[widget.index] = RRSModel(
+                    widget.index,
+                    atValue,
+                    atValue,
+                    cpuBurstValue,
+                    cpuBurstValue,
+                    ioTime,
+                    cpu,
+                    false);
               },
             ),
             decoration: BoxDecoration(
@@ -180,6 +208,8 @@ class _RRSTableClassState extends State<RRSTableClass> {
             height: forHeight(50),
             width: width * 18,
             child: TextFormField(
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: TextInputType.phone,
               cursorColor: ColorModel().green,
               style: TextStyle(
                   color: Vx.white,
@@ -200,8 +230,15 @@ class _RRSTableClassState extends State<RRSTableClass> {
                 } catch (e) {
                   cpu = 0;
                 }
-                RRSModel.tableListValue[widget.index] =
-                    RRSModel(atValue, cpuBurstValue, ioTime, cpu);
+                RRSModel.tableListValue[widget.index] = RRSModel(
+                    widget.index,
+                    atValue,
+                    atValue,
+                    cpuBurstValue,
+                    cpuBurstValue,
+                    ioTime,
+                    cpu,
+                    false);
               },
             ),
             decoration: BoxDecoration(
