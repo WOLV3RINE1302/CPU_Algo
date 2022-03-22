@@ -136,7 +136,7 @@ class _RRSLogicState extends State<RRSLogic> {
               if (!isDone) {
                 break;
               }
-            }
+            } // *Time complexity - O(n*2), Space complexity - O(n)
             completionTime.addAll(List.generate(
                 RRSModel.tableListValue.last.ioTime, (index) => "CPU Idle"));
             completionTime.addAll(List.generate(
@@ -176,7 +176,7 @@ class _RRSLogicState extends State<RRSLogic> {
               if (!isDone) {
                 break;
               }
-            }
+            } // *Time complexity - O(n*2), Space complexity - O(n)
             for (var item in RRSModel.tableListValue) {
               completionTimeMap["P-${item.id}"] =
                   completionTime.lastIndexOf("P-${item.id}") + 1;
@@ -185,7 +185,7 @@ class _RRSLogicState extends State<RRSLogic> {
               waitingTime["P-${item.id}"] = turnAroundTime["P-${item.id}"] -
                   (item.oldcpuBurstValue + item.cpu);
               averageWaitingTime += waitingTime["P-${item.id}"];
-            }
+            } // *Time complexity - O(n), Space complexity - O(n)
           }
           averageWaitingTime =
               averageWaitingTime / RRSModel.tableListValue.length;
