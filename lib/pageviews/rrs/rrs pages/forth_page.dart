@@ -136,7 +136,7 @@ class _RRSPageViewForthPageState extends State<RRSPageViewForthPage> {
                       for (var i = 0; i < completionTime.length; i++) {
                         if (i == 0) {
                           int value = showInGraphList[0]["value"] +=
-                              forWidth(60).round();
+                              forWidth(80).round();
                           runningItem = completionTime[0];
                           showInGraphList[0] = {
                             "id": completionTime[0],
@@ -152,7 +152,7 @@ class _RRSPageViewForthPageState extends State<RRSPageViewForthPage> {
                           if (completionTime[i] == completionTime[i - 1]) {
                             runningItem = completionTime[i];
                             int value = showInGraphList[j]["value"] +=
-                                forWidth(60).round();
+                                forWidth(80).round();
                             showInGraphList[j] = {
                               "id": completionTime[i],
                               "value": value,
@@ -171,7 +171,7 @@ class _RRSPageViewForthPageState extends State<RRSPageViewForthPage> {
                             j++;
                             runningItem = completionTime[i];
                             int value = showInGraphList[j]["value"] +=
-                                forWidth(60).round();
+                                forWidth(80).round();
                             showInGraphList[j] = {
                               "id": completionTime[i],
                               "value": value,

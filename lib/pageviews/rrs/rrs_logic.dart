@@ -90,6 +90,67 @@ class _RRSLogicState extends State<RRSLogic> {
             totalCpuIdleTime = completionTime.length;
           }
           if (isOn) {
+            bool isDone = false;
+            while (true) {
+              isDone = false;
+              for (var j = 0; j < RRSModel.tableListValue.length; j++) {
+                RRSModel item = RRSModel.tableListValue[j];
+                if (item.cpuBurstValue > 0) {
+                  isDone = true;
+                  RRSModel.tableListValue[j] = RRSModel(
+                      item.id,
+                      item.atValue,
+                      item.oldAtValue,
+                      item.cpuBurstValue - 1,
+                      item.oldcpuBurstValue,
+                      item.ioTime,
+                      item.cpu,
+                      item.isFinish);
+                  completionTime.add("P-${item.id}");
+                } else {
+                  if (item.ioTime >= 0 &&
+                      RRSModel.tableListValue.length - 1 != item.id) {
+                    RRSModel.tableListValue[j] = RRSModel(
+                        item.id,
+                        item.atValue,
+                        item.oldAtValue,
+                        -item.ioTime,
+                        item.oldcpuBurstValue,
+                        item.ioTime - 1,
+                        item.cpu,
+                        item.isFinish);
+                  }
+                  if (item.ioTime == 0) {
+                    RRSModel.tableListValue[j] = RRSModel(
+                        item.id,
+                        item.atValue,
+                        item.oldAtValue,
+                        item.cpu,
+                        item.oldcpuBurstValue,
+                        item.ioTime,
+                        item.cpu,
+                        item.isFinish);
+                  }
+                }
+              }
+              if (!isDone) {
+                break;
+              }
+            }
+            completionTime.addAll(List.generate(
+                RRSModel.tableListValue.last.ioTime, (index) => "CPU Idle"));
+            completionTime.addAll(List.generate(
+                RRSModel.tableListValue.last.cpu,
+                (index) => "P-${RRSModel.tableListValue.length - 1}"));
+            for (var item in RRSModel.tableListValue) {
+              completionTimeMap["P-${item.id}"] =
+                  completionTime.lastIndexOf("P-${item.id}") + 1;
+              turnAroundTime["P-${item.id}"] =
+                  completionTime.length - item.oldAtValue;
+              waitingTime["P-${item.id}"] = turnAroundTime["P-${item.id}"] -
+                  (item.oldcpuBurstValue + item.cpu);
+              averageWaitingTime += waitingTime["P-${item.id}"];
+            }
           }
           //! When I/O is OFF
           else {
