@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:os_project/pageviews/sjf/sjf%20pages/third_page.dart';
+import 'package:os_project/model/srtf_model.dart';
 import 'package:velocity_x/velocity_x.dart';
-import '../main.dart';
-import '../model/color_model.dart';
-import '../model/SJF_model.dart';
-import '../widget/help_in_responsive_widgets.dart';
-import 'SJF/SJF pages/forth_page.dart';
-import 'SJF/SJF pages/second_page.dart';
-import 'SJF/sjf pages/first_page.dart';
-import 'sjf/sjf_page_view.dart';
+import '../../main.dart';
+import '../../model/color_model.dart';
+import '../../widget/help_in_responsive_widgets.dart';
+import '../fcfs/fcfs_page_view.dart';
+import 'srtf pages/first_page.dart';
+import 'srtf pages/forth_page.dart';
+import 'srtf pages/second_page.dart';
+import 'srtf pages/third_page.dart';
 
-class SJFPageView extends StatefulWidget {
-  SJFPageView({Key? key}) : super(key: key);
+class SRTFPageView extends StatefulWidget {
+  SRTFPageView({Key? key}) : super(key: key);
 
   @override
-  State<SJFPageView> createState() => _SJFPageViewState();
+  State<SRTFPageView> createState() => _SRTFPageViewState();
 }
 
-class _SJFPageViewState extends State<SJFPageView> {
+bool isOnceNoticed = false;
+List<Map<String, dynamic>> showInGraphList = [
+  {"id": "", "value": 0, "color": ColorModel().blue}
+];
+
+class _SRTFPageViewState extends State<SRTFPageView> {
   @override
   void initState() {
     super.initState();
@@ -25,9 +30,9 @@ class _SJFPageViewState extends State<SJFPageView> {
       time = 0;
       runPhase = 0;
       isNextPageVisible = false;
-      SJFModel.tableListValue = [SJFModel(0, 0, 0, 0, 0, 0, 0, false)];
+      SRTFModel.tableListValue = [SRTFModel(0, 0, 0, 0, 0, 0, 0, false)];
       showInGraphList = [
-        {"id": "", "value": 0, "color": ColorModel().red}
+        {"id": "", "value": 0, "color": ColorModel().blue}
       ];
     });
   }
@@ -36,15 +41,15 @@ class _SJFPageViewState extends State<SJFPageView> {
   @override
   Widget build(BuildContext context) {
     VxState.watch(context, on: [SetheStateMutation]);
-    bool isOn = SJFModel.ioSwitch;
+    bool isOn = SRTFModel.ioSwitch;
     return PageView(
       controller: pc,
       physics: AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       children: [
-        SJFPageViewFirstPage(1),
-        SJFPageViewSecondPage(isOn, pc, 2),
-        SJFPageViewThirdPage(3),
-        SJFPageViewForthPage(4)
+        SRTFPageViewFirstPage(1),
+        SRTFPageViewSecondPage(isOn, pc, 2),
+        SRTFPageViewThirdPage(3),
+        SRTFPageViewForthPage(4)
       ],
     );
   }

@@ -74,8 +74,15 @@ class _SRTFTableClassState extends State<SRTFTableClass> {
               } catch (e) {
                 atValue = 0;
               }
-              SRTFModel.tableListValue[widget.index] =
-                  SRTFModel(atValue, cpuBurstValue, ioTime, cpu);
+              SRTFModel.tableListValue[widget.index] = SRTFModel(
+                  widget.index,
+                  atValue,
+                  atValue,
+                  cpuBurstValue,
+                  cpuBurstValue,
+                  ioTime,
+                  cpu,
+                  false);
             },
           ),
           decoration: BoxDecoration(
@@ -110,8 +117,15 @@ class _SRTFTableClassState extends State<SRTFTableClass> {
               } catch (e) {
                 cpuBurstValue = 0;
               }
-              SRTFModel.tableListValue[widget.index] =
-                  SRTFModel(atValue, cpuBurstValue, ioTime, cpu);
+              SRTFModel.tableListValue[widget.index] = SRTFModel(
+                  widget.index,
+                  atValue,
+                  atValue,
+                  cpuBurstValue,
+                  cpuBurstValue,
+                  ioTime,
+                  cpu,
+                  false);
             },
           ),
           decoration: BoxDecoration(
@@ -157,8 +171,15 @@ class _SRTFTableClassState extends State<SRTFTableClass> {
                 } catch (e) {
                   ioTime = 0;
                 }
-                SRTFModel.tableListValue[widget.index] =
-                    SRTFModel(atValue, cpuBurstValue, ioTime, cpu);
+                SRTFModel.tableListValue[widget.index] = SRTFModel(
+                    widget.index,
+                    atValue,
+                    atValue,
+                    cpuBurstValue,
+                    cpuBurstValue,
+                    ioTime,
+                    cpu,
+                    false);
               },
             ),
             decoration: BoxDecoration(
@@ -200,8 +221,15 @@ class _SRTFTableClassState extends State<SRTFTableClass> {
                 } catch (e) {
                   cpu = 0;
                 }
-                SRTFModel.tableListValue[widget.index] =
-                    SRTFModel(atValue, cpuBurstValue, ioTime, cpu);
+                SRTFModel.tableListValue[widget.index] = SRTFModel(
+                    widget.index,
+                    atValue,
+                    atValue,
+                    cpuBurstValue,
+                    cpuBurstValue,
+                    ioTime,
+                    cpu,
+                    false);
               },
             ),
             decoration: BoxDecoration(

@@ -6,7 +6,7 @@ import 'package:os_project/pageviews/about_page_view.dart';
 import 'package:os_project/model/color_model.dart';
 import 'package:os_project/pageviews/documentation.dart';
 import 'package:os_project/pageviews/rrs/rrs_page_view.dart';
-import 'package:os_project/pageviews/strf_page_view.dart';
+import 'package:os_project/pageviews/srtf/srtf_page_view.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'pageviews/fcfs/fcfs_page_view.dart';
 import 'pageviews/sjf/sjf_page_view.dart';
