@@ -13,9 +13,9 @@ Dart - Programming Language
 CPU Scheduling Algorithms
 
 1. [First Come First Serve(FCFS)](https://docs.google.com/document/d/14lZ_Qfb2v98vzGaxnv7R9zZBy5uG128N_usf_J7kzPE/edit?usp=sharing)
-2. Shortest Job First(SJF) 
-3. Round-Robin Scheduling
-4. Shortest Remaining Time First(SRTF)
+2. [Shortest Job First(SJF)](https://docs.google.com/document/d/1qeEgOSzKKBowW0jKWAPZ2qrE9gnQ6GLRG_BohP7LRJU/edit?usp=sharing)
+3. [Round-Robin Scheduling](https://docs.google.com/document/d/1mHYNnD2MuyFiO4dHOxuCYfqJCpZOI0OWvs-oqzEQtJU/edit?usp=sharing)
+4. [Shortest Remaining Time First(SRTF)](https://docs.google.com/document/d/1bFLl69rU0wAne7cIrB2FKgkeLhllEKVnn747Mku-PeM/edit?usp=sharing)
 
 ## Clone
 
