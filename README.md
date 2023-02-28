@@ -23,7 +23,7 @@ CPU Scheduling Algorithms
 2. Clone the Fork repository in your device
 
 ```terminal
-git clone https://github.com/Samarth170102/CPU_Algo_OS_Lab_Project
+git clone https://github.com/WOLV3RINE1302/CPU_Algo
 ```
 
 ## About US
